@@ -11,6 +11,8 @@ class App extends Component {
 
   // Use this to make network calls
   componentDidMount() {
+    console.log("Application loading...");
+    console.log(`"API Host: ${process.env.REACT_APP_API_HOST}`);
   }
 
   render() {
