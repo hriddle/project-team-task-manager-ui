@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="224" height="96" viewBox="0 0 224 96">
+    <g fill="none" fill-rule="evenodd">
+        <g stroke="#FFE66D" stroke-width="10">
+            <path d="M18 18v60h60V18H18z"/>
+            <path stroke-linecap="square" stroke-linejoin="bevel" d="M21 46.359L48.89 75 83 13"/>
+        </g>
+        <text fill="#F7FFF7" font-family="Montserrat-ExtraLight, Montserrat" font-size="28" font-weight="300" letter-spacing="7">
+            <tspan x="111.628" y="40">TEAM </tspan> <tspan x="97.768" y="74">TASKS</tspan>
+        </text>
+    </g>
+</svg>

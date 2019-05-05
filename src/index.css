@@ -1,14 +1,136 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: var(--font), serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+#page-container {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--dark-gray);
 }
+
+/** GLOBAL COLORS **/
+:root {
+  --mint-cream: #f7fff7;
+  --very-dark-gray: #141414;
+  --pastel-red: #ff6b6b;
+  --dark-gray: #222222;
+  --maize: #ffe66d;
+  --medium-turquoise: #4ecdc4;
+  --english-green: #1a535c;
+  --font: Montserrat, sans-serif;
+}
+
+/** GLOBAL TEXT STYLES **/
+.header-text {
+  font-family: Montserrat;
+  font-size: 54px;
+  font-weight: 900;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  color: var(--mint-cream);
+}
+
+.header-initials {
+  font-family: Montserrat;
+  font-size: 50px;
+  font-weight: 200;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: var(--mint-cream);
+}
+
+.header-user-name {
+  font-family: Montserrat;
+  font-size: 36px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: right;
+  color: var(--mint-cream);
+}
+
+.header-logo-text {
+  font-family: Montserrat;
+  font-size: 28px;
+  font-weight: 200;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 7px;
+  text-align: right;
+  color: var(--dark-gray);
+}
+
+.task-text {
+  font-family: Montserrat;
+  font-size: 28px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 2.29;
+  letter-spacing: normal;
+  color: var(--mint-cream);
+}
+
+.task-placeholder {
+  font-family: Montserrat;
+  font-size: 28px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 2.29;
+  letter-spacing: normal;
+  color: #4c4e4c;
+}
+
+.button-text {
+  font-family: Montserrat;
+  font-size: 26px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: var(--mint-cream);
+}
+
+.nav-heading {
+  font-family: Montserrat;
+  font-size: 24px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: var(--mint-cream);
+}
+
+.nav-button {
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: var(--medium-turquoise);
+}
+
