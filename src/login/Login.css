@@ -1,0 +1,146 @@
+input {
+  border: 0;
+}
+
+input:focus {
+  outline: none;
+}
+
+.login-form {
+  width: 800px;
+  height: 500px;
+  background-color: var(--very-dark-gray);
+  margin: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+}
+
+.login-form > .sidebox {
+  width: 300px;
+  background-color: var(--english-green);
+}
+
+.sidebox, .form-container {
+  height: 100%;
+  flex-grow: 0;
+  display: inline-block;
+}
+
+.login-form > .form-container {
+  padding: 40px 30px;
+}
+
+.sidebox > .logo-container {
+  height: 115px;
+  padding: 10px 38px;
+  border-bottom: 1px solid var(--very-dark-gray)
+}
+
+.logo-container img.logo-img {
+  height: 96px;
+  width: 224px;
+}
+
+.sidebox > .welcome {
+  padding: 60px 0;
+}
+
+.sidebox > .welcome > .welcome-message {
+  width: 300px;
+  height: 70px;
+  font-family: var(--font);
+  font-size: 26px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 70px;
+  letter-spacing: normal;
+  text-align: center;
+  color: var(--mint-cream);
+}
+
+label, input {
+  display: block;
+}
+
+.row {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 17px 0 0 0;
+}
+
+.field-password,
+.field-password-confirmation {
+  position: relative;
+  width: 220px;
+  display: inline-block;
+  padding: 10px 10px 0 10px;
+}
+
+.field-email {
+  position: relative;
+  width: 440px;
+  display: inline-block;
+  padding: 10px 10px 0 10px;
+}
+
+.field-password > input.field {
+  width: 342px;
+}
+
+.field-email > input.field {
+  width: 342px;
+}
+
+.button-row {
+  margin: 10px 10px 0 10px;
+  padding: 50px 110px;
+}
+
+input.field {
+  padding: 0 20px;
+  height: 50px;
+  background-color: var(--dark-gray);
+  font-family: var(--font);
+  font-size: 18px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: var(--mint-cream);
+}
+
+.field-label {
+  margin-bottom: 5px;
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 900;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  text-transform: uppercase;
+  letter-spacing: normal;
+  color: var(--mint-cream);
+}
+
+input.submit-button {
+  width: 200px;
+  height: 50px;
+  background-color: var(--english-green);
+  font-family: var(--font);
+  font-size: 26px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: var(--mint-cream);
+  cursor: pointer;
+}

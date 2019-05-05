@@ -4,7 +4,9 @@ import Registration from "./registration/Registration";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      isLoggedIn: false
+    };
   }
 
   // Use this to make network calls
