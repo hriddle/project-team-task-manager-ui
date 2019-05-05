@@ -15,8 +15,17 @@ class Registration extends Component {
   }
 
   submitRegistration(userRegistration) {
-    console.log("submitting registration...");
-    console.log(userRegistration.email);
+    let host = process.env.REACT_APP_API_HOST;
+    fetch(host + "/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(userRegistration)
+    }).then(res => res.json())
+      .then(user => {
+        return console.log(user);
+      }).catch(err => console.log(err))
   }
 
   render() {
