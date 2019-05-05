@@ -23,9 +23,8 @@ class Registration extends Component {
       },
       body: JSON.stringify(userRegistration)
     }).then(res => res.json())
-      .then(user => {
-        return console.log(user);
-      }).catch(err => console.log(err))
+      .then(user => alert(`Registering ${user.firstName} ${user.lastName} was successful!`))
+      .catch(err => alert(`Registration was unsuccessful:\n\n${err}`))
   }
 
   render() {
