@@ -51,16 +51,33 @@ class UnauthenticatedView extends Component {
       .catch(err => alert(`Registration was unsuccessful:\n\n${err}`))
   }
 
+  toggleForm() {
+    let targetPage = "";
+    if (this.state.currentPage === pages.LOGIN) {
+      targetPage = pages.REGISTER;
+    } else if (this.state.currentPage === pages.REGISTER) {
+      targetPage = pages.LOGIN;
+    }
+    this.setState({currentPage: targetPage})
+  }
+
   render() {
     let pageComponent = <div></div>;
     let welcomeMessage = "";
+    let toggleMessage = "";
+    let toggleButtonText = "";
     if (this.state.currentPage === pages.LOGIN) {
       pageComponent = <LoginForm submit={this.submitLogin}/>;
-      welcomeMessage = "Welcome back!"
+      welcomeMessage = "Welcome back!";
+      toggleMessage = "Don't have an account yet?";
+      toggleButtonText = "Sign Up";
     } else if (this.state.currentPage === pages.REGISTER) {
       pageComponent = <RegistrationForm submit={this.submitRegistration}/>;
-      welcomeMessage = "Welcome!"
+      welcomeMessage = "Welcome!";
+      toggleMessage = "Already have an account?";
+      toggleButtonText = "Sign In";
     }
+
     return (
       <div className="unauthenticated-view">
         <div className="sidebox">
@@ -69,6 +86,10 @@ class UnauthenticatedView extends Component {
           </div>
           <div className="welcome">
             <div className="welcome-message">{welcomeMessage}</div>
+          </div>
+          <div className="form-toggle">
+            <div className="toggle-message"><span>{toggleMessage}</span></div>
+            <input className="toggle-button" type="submit" value={toggleButtonText} onClick={this.toggleForm.bind(this)} />
           </div>
         </div>
         {pageComponent}

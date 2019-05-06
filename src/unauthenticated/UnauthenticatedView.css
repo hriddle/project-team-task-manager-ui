@@ -134,10 +134,9 @@ input.field {
   color: var(--mint-cream);
 }
 
-input.submit-button {
+input.submit-button, input.toggle-button {
   width: 200px;
   height: 50px;
-  background-color: var(--english-green);
   font-family: var(--font);
   font-size: 26px;
   font-weight: bold;
@@ -148,4 +147,36 @@ input.submit-button {
   text-align: center;
   color: var(--mint-cream);
   cursor: pointer;
+}
+
+input.submit-button {
+  background-color: var(--english-green);
+}
+
+input.toggle-button {
+  background-color: var(--dark-gray);
+}
+
+.form-toggle {
+  padding: 0 50px;
+}
+
+.toggle-message {
+  display: table;
+  width: 200px;
+  height: 95px;
+  font-family: var(--font);
+  font-size: 22px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: var(--mint-cream);
+}
+
+.toggle-message > span {
+  display: table-cell;
+  vertical-align: middle;
 }
