@@ -35,7 +35,7 @@ class LoginForm extends Component {
         <div className="row">
           <div className="field-password">
             <label htmlFor="password" className="field-label">Password</label>
-            <input id="password" name="password" className="field" type="password" autoComplete="new-password" value={this.state.password} onChange={e => this.handleChange(e, "password")}/>
+            <input id="password" name="password" className="field" type="password" autoComplete="current-password" value={this.state.password} onChange={e => this.handleChange(e, "password")}/>
           </div>
         </div>
         <div className="button-row">
