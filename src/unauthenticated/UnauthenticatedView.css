@@ -30,8 +30,12 @@ input:focus {
   display: inline-block;
 }
 
-.registration-form, .login-form {
+.registration-form {
   padding: 40px 30px;
+}
+
+.login-form {
+  padding: 90px 30px 40px 30px;
 }
 
 .sidebox > .logo-container {
@@ -101,8 +105,13 @@ label, input {
   width: 440px
 }
 
-.button-row {
+.registration-form .button-row {
   margin: 10px 10px 0 10px;
+  padding: 50px 110px;
+}
+
+.login-form .button-row {
+  margin: 60px 10px 0 10px;
   padding: 50px 110px;
 }
 
