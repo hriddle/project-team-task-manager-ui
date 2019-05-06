@@ -6,7 +6,7 @@ input:focus {
   outline: none;
 }
 
-.registration-form {
+.unauthenticated-view {
   width: 800px;
   height: 500px;
   background-color: var(--very-dark-gray);
@@ -19,18 +19,18 @@ input:focus {
   display: flex;
 }
 
-.registration-form > .sidebox {
+.unauthenticated-view > .sidebox {
   width: 300px;
   background-color: var(--english-green);
 }
 
-.sidebox, .form-container {
+.sidebox, .registration-form, .login-form {
   height: 100%;
   flex-grow: 0;
   display: inline-block;
 }
 
-.registration-form > .form-container {
+.registration-form, .login-form {
   padding: 40px 30px;
 }
 
@@ -76,30 +76,29 @@ label, input {
 
 .field-first-name,
 .field-last-name,
+.field-email,
 .field-password,
 .field-password-confirmation {
   position: relative;
-  width: 220px;
   display: inline-block;
   padding: 10px 10px 0 10px;
 }
 
-.field-email {
-  position: relative;
-  width: 440px;
-  display: inline-block;
-  padding: 10px 10px 0 10px;
+.registration-form .field-first-name,
+.registration-form .field-last-name,
+.registration-form .field-email,
+.registration-form .field-password,
+.registration-form .field-password-confirmation {
+  width: 220px
 }
 
-.field-first-name > input.field,
-.field-last-name > input.field,
-.field-password > input.field,
-.field-password-confirmation > input.field {
-  width: 200px;
+.registration-form .field-email {
+  width: 440px
 }
 
-.field-email > input.field {
-  width: 420px;
+.login-form .field-email,
+.login-form .field-password {
+  width: 440px
 }
 
 .button-row {
@@ -109,6 +108,7 @@ label, input {
 
 input.field {
   padding: 0 20px;
+  width: 100%;
   height: 50px;
   background-color: var(--dark-gray);
   font-family: var(--font);

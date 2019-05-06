@@ -28,7 +28,7 @@ class RegistrationForm extends Component {
 
   render() {
     return (
-      <form className="form-container" onSubmit={this.handleSubmit}>
+      <form className="registration-form" onSubmit={this.handleSubmit}>
         <div className="row">
           <div className="field-first-name">
             <label htmlFor="first-name" className="field-label">First Name</label>

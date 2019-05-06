@@ -1,24 +1,43 @@
 import React, {Component} from 'react';
-import Registration from "./registration/Registration";
+import UnauthenticatedView from "./unauthenticated/UnauthenticatedView";
+
+const pages = {
+  UNAUTHENTICATED: 'unauthenticated',
+  DASHBOARD: 'dashboard'
+};
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoggedIn: false
+      loggedInUser: null,
+      currentPage: pages.UNAUTHENTICATED
     };
+
+    this.setLoggedInUser = this.setLoggedInUser.bind(this);
+  }
+
+  setLoggedInUser(user) {
+    this.setState({
+      loggedInUser: user,
+      currentPage: pages.DASHBOARD
+    });
   }
 
   // Use this to make network calls
   componentDidMount() {
     console.log("Application loading...");
-    console.log(`"API Host: ${process.env.REACT_APP_API_HOST}`);
+    console.log(`API Host: ${process.env.REACT_APP_API_HOST}`);
   }
 
   render() {
+    let pageComponent = <div></div>;
+    if (this.state.currentPage === pages.UNAUTHENTICATED) {
+      pageComponent = <UnauthenticatedView setLoggedInUser={this.setLoggedInUser}/>;
+    }
     return (
       <div id="page-container">
-        <Registration/>
+        {pageComponent}
       </div>
     )
   }

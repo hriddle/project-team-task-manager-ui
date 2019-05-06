@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './Login.css';
-import LoginForm from "./LoginForm";
+import LoginForm from "../unauthenticated/LoginForm";
 import logo from '../assets/logo-light-with-text.svg';
 
 class Login extends Component {
@@ -24,7 +24,10 @@ class Login extends Component {
             },
             body: JSON.stringify(userLogin)
         }).then((res) => res.json())
-            .then((data) => console.log(data))
+            .then(user => {
+                console.log(`Logging in ${user.firstName} ${user.lastName} was successful!`);
+                this.props.setLoggedInUser(user);
+            })
             .catch((err) => console.log(err))
     }
 
