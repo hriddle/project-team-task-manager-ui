@@ -10,6 +10,7 @@ body {
   font-family: var(--font), serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--dark-gray);
 }
 
 #page-container {
@@ -29,9 +30,9 @@ body {
   --english-green: #1a535c;
   --font: Montserrat, sans-serif;
 }
-
 /** GLOBAL TEXT STYLES **/
 .header-text {
+  width: 725px;
   font-family: Montserrat;
   font-size: 54px;
   font-weight: 900;
@@ -64,6 +65,7 @@ body {
   letter-spacing: normal;
   text-align: right;
   color: var(--mint-cream);
+  padding-right: 28px;
 }
 
 .header-logo-text {
