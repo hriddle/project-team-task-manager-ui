@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import UnauthenticatedView from "./unauthenticated/UnauthenticatedView";
-import DashboardView from "./dashboard/DashboardView";
+import Dashboard from "./dashboard/Dashboard";
 
 const pages = {
   UNAUTHENTICATED: 'unauthenticated',
@@ -37,7 +37,7 @@ class App extends Component {
       pageComponent = <UnauthenticatedView setLoggedInUser={this.setLoggedInUser}/>;
     }
     if(this.state.currentPage === pages.DASHBOARD){
-      pageComponent = <DashboardView user={this.state.loggedInUser}/>;
+      pageComponent = <Dashboard user={this.state.loggedInUser}/>;
     }
     return (
       <div id="page-container">

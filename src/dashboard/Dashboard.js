@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import './DashboardView.css';
+import './Dashboard.css';
 import logo from "../assets/logo-light-with-text.svg";
 import CreateListModal from "./CreateListModal";
 import NavBar from "./NavBar";
 
-class DashboardView extends Component {
+class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -73,4 +73,4 @@ class DashboardView extends Component {
   }
 }
 
-export default DashboardView
+export default Dashboard
