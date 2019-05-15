@@ -6,7 +6,6 @@ class CreateListModal extends Component {
     this.state = {
       listName: ''
     };
-
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -25,7 +24,7 @@ class CreateListModal extends Component {
       headers: {"Content-Type": "application/json"},
       body: listName
     }).then(res => res.json())
-      .then(list => this.props.refreshLists())
+      .then(list => this.props.addNewList(list))
       .catch(err => alert(`Creating list was unsuccessful:\n\n${err}`));
     this.props.closeModal();
   }
