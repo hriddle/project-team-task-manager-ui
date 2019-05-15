@@ -7,10 +7,12 @@ class DashboardView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      openCreatePersonalListModal: false
+      openCreatePersonalListModal: false,
+      personalLists: []
     };
     this.closeCreateListModal = this.closeCreateListModal.bind(this);
     this.refreshPersonalLists = this.refreshPersonalLists.bind(this);
+    this.fetchPersonalLists = this.fetchPersonalLists.bind(this);
   }
 
   createList() {
@@ -28,14 +30,32 @@ class DashboardView extends Component {
   }
 
   refreshPersonalLists() {
-    console.log("a list was created so the navbar needs to be re-rendered");
+    this.fetchPersonalLists(this.props.user.userId);
+  }
+
+  componentDidMount() {
+    this.fetchPersonalLists(this.props.user.userId);
+  }
+
+  fetchPersonalLists(userId) {
+    fetch(`${process.env.REACT_APP_API_HOST}/users/${userId}/lists`, {
+      method: "GET",
+      headers: {"Content-Type": "application/json"}
+    }).then(res => res.json())
+      .then(lists => this.setState({personalLists: lists}))
+      .catch(err => alert(`Fetching personal lists was unsuccessful:\n\n${err}`))
   }
 
   render() {
+    let personalLists = [];
+    if (this.state.personalLists.length > 0) {
+      personalLists = this.state.personalLists.map(list =>
+        <div className="list-element" key={list.id}>{list.name}</div>);
+    }
+
     return (
       <div className="dashboardView">
         <div className='header-row'>
-
           <div className="header-title">
             <div className="header-text">DASHBOARD</div>
             <div className="name-container">
@@ -55,8 +75,7 @@ class DashboardView extends Component {
           <div className="divider"/>
           <div className="list">
             <div className="list-title">Personal Lists</div>
-            {/*<div className="list-element">To Do List</div>*/}
-            {/*<div className="list-element">Training Due</div>*/}
+            {personalLists}
             <div className="new-list" onClick={this.createList.bind(this)}>NEW LIST</div>
           </div>
           <div className="divider"/>
