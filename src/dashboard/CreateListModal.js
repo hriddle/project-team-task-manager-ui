@@ -39,7 +39,7 @@ class CreateListModal extends Component {
                    onChange={this.handleChange.bind(this)}/>
           </div>
           <div className="button-row">
-            <input className="cancel-button" type="submit" value="Cancel" onClick={this.props.closeModal}/>
+            <input className="cancel-button" type="button" value="Cancel" onClick={this.props.closeModal}/>
             <input className="submit-button" type="submit" value="Create"/>
           </div>
         </form>
