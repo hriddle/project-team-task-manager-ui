@@ -8,6 +8,7 @@ class NavBar extends Component {
 
   componentDidMount() {
     this.fetchPersonalLists(this.props.userId);
+    this.fetchTeams(this.props.userId);
   }
 
   fetchPersonalLists(userId) {
@@ -19,11 +20,26 @@ class NavBar extends Component {
       .catch(err => alert(`Fetching personal lists was unsuccessful:\n\n${err}`))
   }
 
+  fetchTeams(userId){
+    fetch(`${process.env.REACT_APP_API_HOST}/teams?userId=${userId}`, {
+      method: "GET",
+      headers: {"Content-Type": "application/json"}
+    }).then(res => res.json())
+        .then(lists => this.props.setTeams(lists))
+        .catch(err => alert(`Fetching teams was unsuccessful:\n\n${err}`))
+  }
+
   render() {
     let personalLists = [];
     if (this.props.personalLists.length > 0) {
       personalLists = this.props.personalLists.map(list =>
         <div className="list-element" key={list.id}>{list.name}</div>);
+    }
+
+    let teams = [];
+    if (this.props.teams.length > 0) {
+      teams = this.props.teams.map(team =>
+          <div className="list-element" key={team.id}>{team.name}</div>);
     }
 
     return (
@@ -37,7 +53,8 @@ class NavBar extends Component {
         <div className="divider"/>
         <div className="list">
           <div className="list-title">Teams</div>
-          <div className="new-list">NEW LIST</div>
+          {teams}
+          <div className="new-list" onClick={this.props.openCreateTeamModal}>NEW TEAM</div>
         </div>
       </div>
     )

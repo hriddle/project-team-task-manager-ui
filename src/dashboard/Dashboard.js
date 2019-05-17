@@ -9,18 +9,31 @@ class Dashboard extends Component {
     super(props);
     this.state = {
       openCreatePersonalListModal: false,
-      personalLists: []
+      openCreateTeamModal: false,
+      personalLists: [],
+      teams: []
     };
     this.openCreatePersonalListModal = this.openCreatePersonalListModal.bind(this);
     this.closeCreateListModal = this.closeCreateListModal.bind(this);
     this.setPersonalLists = this.setPersonalLists.bind(this);
     this.addNewListToPersonalLists = this.addNewListToPersonalLists.bind(this);
+
+    this.openCreateTeamModal = this.openCreateTeamModal.bind(this);
+    this.closeCreateTeamModal = this.closeCreateTeamModal.bind(this);
+    this.setTeams = this.setTeams.bind(this);
+    this.addNewTeamToTeamList = this.addNewTeamToTeamList.bind(this);
   }
 
   renderModals() {
     if (this.state.openCreatePersonalListModal) {
       return <CreateListModal closeModal={this.closeCreateListModal} ownerId={this.props.user.userId}
-                              addNewList={this.addNewListToPersonalLists}/>
+                              addResource={this.addNewListToPersonalLists}
+                              name="List Name"/>
+    }
+    if (this.state.openCreateTeamModal) {
+      return <CreateListModal closeModal={this.closeCreateTeamModal} ownerId={this.props.user.userId}
+                              addResource={this.addNewTeamToTeamList}
+                              name="Team Name"/>
     }
   }
 
@@ -32,14 +45,32 @@ class Dashboard extends Component {
     this.setState({openCreatePersonalListModal: false});
   }
 
+  openCreateTeamModal() {
+    this.setState({openCreateTeamModal: true});
+  }
+
+  closeCreateTeamModal() {
+    this.setState({openCreateTeamModal: false});
+  }
+
   addNewListToPersonalLists(list) {
     let lists = this.state.personalLists;
     lists.push(list);
     this.setState({personalLists: lists})
   }
 
+  addNewTeamToTeamList(list) {
+    let lists = this.state.teams;
+    lists.push(list);
+    this.setState({teams: lists})
+  }
+
   setPersonalLists(lists) {
     this.setState({personalLists: lists})
+  }
+
+  setTeams(teams) {
+    this.setState({teams: teams})
   }
 
   render() {
@@ -64,6 +95,9 @@ class Dashboard extends Component {
                 userId={this.props.user.userId}
                 personalLists={this.state.personalLists}
                 setPersonalLists={this.setPersonalLists}
+                teams={this.state.teams}
+                setTeams={this.setTeams}
+                openCreateTeamModal={this.openCreateTeamModal}
         />
         <div className="main-content">
           {this.renderModals()}
