@@ -4,14 +4,20 @@ import logo from "../assets/logo-light-with-text.svg";
 import CreateListModal from "./CreateListModal";
 import NavBar from "./NavBar";
 import AllTeamsView from "./AllTeamsView"
+import PersonalList from "./PersonalList";
+
+const pages = {
+    ALL_TEAMS: 'all-teams',
+    PERSONAL_LIST: 'personal-list'
+};
 
 class Dashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            currentPage: {page: '', id: ''},
             openCreatePersonalListModal: false,
             openCreateTeamModal: false,
-            viewAllTeams: false,
             personalLists: [],
             teams: []
         };
@@ -24,7 +30,9 @@ class Dashboard extends Component {
         this.closeCreateTeamModal = this.closeCreateTeamModal.bind(this);
         this.setTeams = this.setTeams.bind(this);
         this.addNewTeamToTeamList = this.addNewTeamToTeamList.bind(this);
-        this.toggleTeams = this.toggleTeams.bind(this)
+        this.toggleTeams = this.toggleTeams.bind(this);
+
+        this.openPersonalList = this.openPersonalList.bind(this);
     }
 
     renderModals() {
@@ -40,9 +48,14 @@ class Dashboard extends Component {
         }
     }
 
-    loadContent() {
-        if (this.state.viewAllTeams) {
-            return <AllTeamsView></AllTeamsView>
+    getCurrentPage() {
+        if (this.state.currentPage.page === pages.ALL_TEAMS) {
+            return <AllTeamsView/>
+        } else if (this.state.currentPage.page === pages.PERSONAL_LIST) {
+            let list = this.state.personalLists.find(list => list.id === this.state.currentPage.id);
+            return <PersonalList list={list}/>
+        } else {
+            return <div></div>
         }
     }
 
@@ -83,18 +96,18 @@ class Dashboard extends Component {
     }
 
     toggleTeams() {
-        if (this.state.viewAllTeams) {
-            this.setState({viewAllTeams: false})
-        } else {
-            this.setState({viewAllTeams: true})
-        }
+        this.setState({currentPage: {page: pages.ALL_TEAMS}});
+    }
 
+    openPersonalList(listId) {
+        this.setState({currentPage: {page: pages.PERSONAL_LIST, id: listId}});
     }
 
     render() {
+        let content = this.getCurrentPage();
         return (
-            <div className="dashboardView">
-                <div className='header-row'>
+            <div className="dashboard-view">
+                <div className="header-row">
                     <div className="header-title">
                         <div className="header-text">DASHBOARD</div>
                         <div className="name-container">
@@ -114,6 +127,7 @@ class Dashboard extends Component {
                 <NavBar openCreateListModal={this.openCreatePersonalListModal}
                         userId={this.props.user.userId}
                         personalLists={this.state.personalLists}
+                        openPersonalList={this.openPersonalList}
                         setPersonalLists={this.setPersonalLists}
                         teams={this.state.teams}
                         setTeams={this.setTeams}
@@ -121,7 +135,7 @@ class Dashboard extends Component {
                         toggleTeams={this.toggleTeams}
                 />
                 <div className="main-content">
-                    {this.loadContent()}
+                    {content}
                     {this.renderModals()}
                 </div>
             </div>

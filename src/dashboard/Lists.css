@@ -1,0 +1,9 @@
+#personal-list {
+  position: relative;
+}
+
+#personal-list > .list-container {
+  position: relative;
+  width: 880px;
+  margin: 20px auto;
+}

@@ -35,7 +35,7 @@ class NavBar extends Component {
     let personalLists = [];
     if (this.props.personalLists.length > 0) {
       personalLists = this.props.personalLists.map(list =>
-        <div className="list-element" key={list.id}>{list.name}</div>);
+        <div className="list-element" key={list.id} onClick={() => this.props.openPersonalList(list.id)}>{list.name}</div>);
     }
 
     let teams = [];
@@ -45,7 +45,7 @@ class NavBar extends Component {
     }
 
     return (
-      <div className="sidebox">
+      <div className="navbar">
         <div className="divider"/>
         <div className="list">
           <div className="list-title">Personal Lists</div>

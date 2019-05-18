@@ -1,4 +1,4 @@
-.dashboardView > .sidebox {
+.dashboard-view > .navbar {
     width: 300px;
     background-color: var(--very-dark-gray);
     position: absolute;
