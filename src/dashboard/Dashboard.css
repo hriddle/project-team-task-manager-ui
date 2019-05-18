@@ -22,9 +22,7 @@
     align-items: center;
     justify-content: center;
     display: flex;
-    float: right;
-    position: absolute;
-    right: 28px;
+    margin-right: 28px;
 }
 
 .circle-thing {
@@ -52,11 +50,12 @@
 }
 
 .header-title {
-    width: 100%;
+    margin-left: 300px;
+    padding-left: 56px;
     height: 180px;
     background-color: var(--english-green);
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     display: flex;
 }
 
