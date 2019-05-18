@@ -21,6 +21,9 @@ class Dashboard extends Component {
             personalLists: [],
             teams: []
         };
+
+        this.headerText = "Dashboard";
+
         this.openCreatePersonalListModal = this.openCreatePersonalListModal.bind(this);
         this.closeCreateListModal = this.closeCreateListModal.bind(this);
         this.setPersonalLists = this.setPersonalLists.bind(this);
@@ -53,6 +56,7 @@ class Dashboard extends Component {
             return <AllTeamsView/>
         } else if (this.state.currentPage.page === pages.PERSONAL_LIST) {
             let list = this.state.personalLists.find(list => list.id === this.state.currentPage.id);
+            this.headerText = list.name;
             return <PersonalList list={list}/>
         } else {
             return <div></div>
@@ -109,7 +113,7 @@ class Dashboard extends Component {
             <div className="dashboard-view">
                 <div className="header-row">
                     <div className="header-title">
-                        <div className="header-text">DASHBOARD</div>
+                        <div className="header-text">{this.headerText}</div>
                         <div className="name-container">
                             <div
                                 className="header-user-name">{this.props.user.firstName}<br/> {this.props.user.lastName}

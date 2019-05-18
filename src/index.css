@@ -34,18 +34,19 @@ body {
 /** GLOBAL TEXT STYLES **/
 .header-text {
   width: 725px;
-  font-family: Montserrat;
+  font-family: var(--font);
   font-size: 54px;
   font-weight: 900;
   font-style: normal;
   font-stretch: normal;
   line-height: 1;
   letter-spacing: normal;
+  text-transform: uppercase;
   color: var(--mint-cream);
 }
 
 .header-initials {
-  font-family: Montserrat;
+  font-family: var(--font);
   font-size: 50px;
   font-weight: 200;
   font-style: normal;
@@ -57,7 +58,7 @@ body {
 }
 
 .header-user-name {
-  font-family: Montserrat;
+  font-family: var(--font);
   font-size: 36px;
   font-weight: 300;
   font-style: normal;
@@ -70,7 +71,7 @@ body {
 }
 
 .header-logo-text {
-  font-family: Montserrat;
+  font-family: var(--font);
   font-size: 28px;
   font-weight: 200;
   font-style: normal;
@@ -82,7 +83,7 @@ body {
 }
 
 .task-text {
-  font-family: Montserrat;
+  font-family: var(--font);
   font-size: 28px;
   font-weight: 300;
   font-style: normal;
@@ -93,7 +94,7 @@ body {
 }
 
 .task-placeholder {
-  font-family: Montserrat;
+  font-family: var(--font);
   font-size: 28px;
   font-weight: 300;
   font-style: normal;
@@ -104,7 +105,7 @@ body {
 }
 
 .button-text {
-  font-family: Montserrat;
+  font-family: var(--font);
   font-size: 26px;
   font-weight: bold;
   font-style: normal;
@@ -116,7 +117,7 @@ body {
 }
 
 .nav-heading {
-  font-family: Montserrat;
+  font-family: var(--font);
   font-size: 24px;
   font-weight: bold;
   font-style: normal;
@@ -127,7 +128,7 @@ body {
 }
 
 .nav-button {
-  font-family: Montserrat;
+  font-family: var(--font);
   font-size: 16px;
   font-weight: bold;
   font-style: normal;
