@@ -95,6 +95,7 @@
     line-height: normal;
     letter-spacing: normal;
     color: var(--mint-cream);
+    cursor: pointer;
 }
 
 .new-list {
