@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import list from "../assets/list.svg";
+
 
 class NavBar extends Component {
   constructor(props) {
@@ -52,7 +54,9 @@ class NavBar extends Component {
         </div>
         <div className="divider"/>
         <div className="list">
-          <div className="list-title">Teams</div>
+          <div className="row">
+            <div className="list-title">Teams</div><img src={list} alt="Search" className="search-img" onClick={this.props.toggleTeams}/>
+          </div>
           {teams}
           <div className="new-list" onClick={this.props.openCreateTeamModal}>NEW TEAM</div>
         </div>

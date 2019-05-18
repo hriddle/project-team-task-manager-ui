@@ -72,7 +72,6 @@
 }
 
 .list-title {
-    width: 276px;
     height: 55px;
     font-family: var(--font);
     font-size: 24px;
@@ -83,6 +82,7 @@
     letter-spacing: normal;
     color: var(--mint-cream);
     left: 24px;
+    display: inline-block;
 }
 
 .list-element {
@@ -193,4 +193,14 @@ label, input {
 
 .create-list-modal input.cancel-button {
     background-color: var(--dark-gray);
+}
+
+.search-img {
+    float: right;
+    height: 25px;
+    padding-right: 24px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    cursor: pointer;
 }
