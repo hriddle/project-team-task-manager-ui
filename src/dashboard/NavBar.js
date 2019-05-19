@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import list from "../assets/list.svg";
-
+import PersonalListsSection from "./PersonalListsSection";
 
 class NavBar extends Component {
   constructor(props) {
@@ -9,17 +9,7 @@ class NavBar extends Component {
   }
 
   componentDidMount() {
-    this.fetchPersonalLists(this.props.userId);
     this.fetchTeams(this.props.userId);
-  }
-
-  fetchPersonalLists(userId) {
-    fetch(`${process.env.REACT_APP_API_HOST}/users/${userId}/lists`, {
-      method: "GET",
-      headers: {"Content-Type": "application/json"}
-    }).then(res => res.json())
-      .then(lists => this.props.setPersonalLists(lists))
-      .catch(err => alert(`Fetching personal lists was unsuccessful:\n\n${err}`))
   }
 
   fetchTeams(userId){
@@ -32,12 +22,6 @@ class NavBar extends Component {
   }
 
   render() {
-    let personalLists = [];
-    if (this.props.personalLists.length > 0) {
-      personalLists = this.props.personalLists.map(list =>
-        <div className="list-element" key={list.id} onClick={() => this.props.openPersonalList(list.id)}>{list.name}</div>);
-    }
-
     let teams = [];
     if (this.props.teams.length > 0) {
       teams = this.props.teams.map(team =>
@@ -47,11 +31,11 @@ class NavBar extends Component {
     return (
       <div className="navbar">
         <div className="divider"/>
-        <div className="list">
-          <div className="list-title">Personal Lists</div>
-          {personalLists}
-          <div className="new-list" onClick={this.props.openCreateListModal}>NEW LIST</div>
-        </div>
+        <PersonalListsSection userId={this.props.userId}
+                              lists={this.props.personalLists}
+                              openCreateListModal={this.props.openCreateListModal}
+                              setLists={this.props.setPersonalLists}
+                              openList={this.props.openPersonalList}/>
         <div className="divider"/>
         <div className="list">
           <div className="row">

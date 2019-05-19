@@ -7,3 +7,129 @@
   width: 880px;
   margin: 20px auto;
 }
+
+ul, li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+li.task, .add-task {
+  cursor: auto;
+  position: relative;
+  height: 66px;
+  border-width: 1px 0 0 0;
+  border-style: solid;
+  border-color: var(--very-dark-gray);
+  font-size: 28px;
+  font-weight: 300;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+li.task input {
+  position: absolute;
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
+
+.checkbox {
+  margin: 16px;
+  height: 32px;
+  width: 32px;
+  cursor: pointer;
+  object-fit: contain;
+  border: solid 5px var(--maize);
+  flex-grow: 0;
+}
+
+.checkbox:hover {
+  background-color: var(--maize);
+}
+
+.task input:checked ~ .checkbox {
+  background-color: var(--maize);
+}
+
+li.task > .task-name {
+  flex-grow: 1;
+}
+
+li.task > .indicators {
+  width: 88px;
+  flex-grow: 0;
+  height: 64px;
+}
+
+li.task > .buttons {
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  right: 0;
+  height: 64px;
+  width: 168px;
+  display: none;
+}
+
+li.task:hover > .buttons {
+  display: block;
+}
+
+/** ADD TASK SPECIFICS **/
+
+.add-task {
+  border-width: 1px 0;
+}
+
+.add-task-line {
+  height: 48px;
+  font-family: var(--font);
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 48px;
+  margin: 8px 0 8px 64px;
+  flex-grow: 1;
+}
+
+.add-task-line.field {
+  width: 708px;
+  background-color: var(--very-dark-gray);
+  color: var(--mint-cream);
+  padding: 0 10px;
+}
+
+.add-task-line.placeholder {
+  width: 728px;
+  background-color: var(--dark-gray);
+  color: var(--medium-gray);
+  padding: 0;
+  cursor: text;
+}
+
+.add-task .buttons {
+  width: 88px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-grow: 0; /* ensures div doesn't change size */
+}
+
+.add-task > form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1; /* makes the form fill the line */
+}
+
+.add-task .save-button, .add-task .cancel-button {
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  cursor: pointer;
+}

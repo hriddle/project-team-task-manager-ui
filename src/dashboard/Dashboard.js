@@ -58,7 +58,7 @@ class Dashboard extends Component {
         } else if (this.state.currentPage.page === pages.PERSONAL_LIST) {
             let list = this.state.personalLists.find(list => list.id === this.state.currentPage.id);
             this.headerText = list.name;
-            return <PersonalList list={list}/>
+            return <PersonalList userId={this.props.userId} list={{id: list.id, name: list.name}}/>
         } else {
             return <div></div>
         }

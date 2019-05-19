@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import save from '../assets/save.svg';
 import cancel from '../assets/cancel.svg';
-import './AddTask.css'
 
 class AddTask extends Component {
   constructor(props) {
@@ -20,9 +19,9 @@ class AddTask extends Component {
   }
 
   handleSubmit(event) {
+    event.preventDefault();
     this.props.saveTask(this.state.value);
     this.setState({editing: false, value: ''});
-    event.preventDefault();
   }
 
   render() {
