@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './Lists.css';
 import AddTask from "./AddTask";
+import Task from "./Task";
 
 class PersonalList extends Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class PersonalList extends Component {
       tasks: []
     };
     this.saveTask = this.saveTask.bind(this);
+    this.editTask = this.editTask.bind(this);
   }
 
   componentDidMount() {
@@ -40,25 +42,36 @@ class PersonalList extends Component {
       .catch(err => alert(`Creating task was unsuccessful:\n\n${err}`));
   }
 
+  editTask(taskName, taskIndex) {
+    let task = this.state.tasks[taskIndex];
+    if (task.name !== taskName) {
+      task.name = taskName;
+    } else {
+      return; // nothing to change
+    }
+    return fetch(`${process.env.REACT_APP_API_HOST}/lists/${this.props.list.id}/tasks/${taskIndex}`, {
+      method: 'PUT',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(task)
+    }).then(res => res.json())
+      .then(task => {
+        let tasks = this.state.tasks;
+        tasks[taskIndex] = task;
+        this.setState({tasks: tasks})
+      })
+      .catch(err => alert(`Editing task was unsuccessful:\n\n${err}`));
+  }
+
   render() {
-    let tasks = this.state.tasks.map((task, index) => {
-      return (
-        <li className="task" key={index}>
-          <input type="checkbox" />
-          <div className="checkbox" />
-          <div className="task-name">{task.name}</div>
-          <div className="indicators"/>
-          <div className="buttons"/>
-        </li>
-      )
-    });
     return (
       <div id="personal-list">
         <div className="list-container">
           <ul>
-            {tasks}
+            {this.state.tasks.map((task, index) => {
+              return <Task task={task} id={index} editTask={this.editTask}/>
+            })}
           </ul>
-          <AddTask saveTask={this.saveTask} />
+          <AddTask saveTask={this.saveTask}/>
         </div>
       </div>
     )

@@ -32,7 +32,7 @@ li.task, .add-task {
   align-items: center;
 }
 
-li.task input {
+li.task > input {
   position: absolute;
   opacity: 0;
   height: 0;
@@ -67,7 +67,7 @@ li.task > .indicators {
   height: 64px;
 }
 
-li.task > .buttons {
+li.task > .task-buttons {
   position: absolute;
   z-index: 100;
   top: 0;
@@ -77,7 +77,7 @@ li.task > .buttons {
   display: none;
 }
 
-li.task:hover > .buttons {
+li.task:hover > .task-buttons {
   display: block;
 }
 
@@ -112,7 +112,7 @@ li.task:hover > .buttons {
   cursor: text;
 }
 
-.add-task .buttons {
+.add-task .field-buttons, .task .field-buttons {
   width: 88px;
   display: flex;
   justify-content: space-evenly;
@@ -121,7 +121,7 @@ li.task:hover > .buttons {
   flex-grow: 0; /* ensures div doesn't change size */
 }
 
-.add-task > form {
+.add-task > form, .task > form {
   display: flex;
   align-items: center;
 }
@@ -145,4 +145,23 @@ svg {
 
 .button.material-icons:hover {
   color: var(--medium-turquoise);
+}
+
+/* EDIT TASK SPECIFICS */
+
+.edit-task {
+  height: 48px;
+  font-family: var(--font);
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 48px;
+  margin: 8px 0 8px 0;
+  flex-grow: 1;
+}
+
+.edit-task.field {
+  width: 708px;
+  background-color: var(--very-dark-gray);
+  color: var(--mint-cream);
+  padding: 0 88px 0 10px;
 }

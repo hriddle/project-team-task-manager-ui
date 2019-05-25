@@ -1,16 +1,19 @@
 import React, {Component} from 'react'
 
-class AddTask extends Component {
+class Task extends Component {
   constructor(props) {
     super(props);
     this.state = {
       editing: false,
       value: ''
     };
-    this.placeholderText = 'Add task...';
-
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.beginEditing = this.beginEditing.bind(this);
+  }
+
+  beginEditing() {
+    this.setState({editing: true, value: this.props.task.name})
   }
 
   handleChange(event) {
@@ -19,30 +22,34 @@ class AddTask extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.saveTask(this.state.value);
+    this.props.editTask(this.state.value, this.props.id);
     this.setState({editing: false, value: ''});
   }
 
   render() {
     const editing = this.state.editing;
     return (
-      <div className="add-task">
+      <li className="task" key={this.props.id}>
+        <input type="checkbox" />
+        <div className="checkbox" />
         {editing ? (
           <form onSubmit={this.handleSubmit}>
-            <input className="add-task-line field" id="task" name="task" value={this.state.value} onChange={this.handleChange}/>
+            <input className="edit-task field" id="task" name="task" value={this.state.value} onChange={this.handleChange}/>
             <div className="field-buttons">
               <i className="button material-icons save-button" onClick={e => this.handleSubmit(e)}>check</i>
               <i className="button material-icons cancel-button" onClick={() => this.setState({editing: false, value: ''})}>close</i>
             </div>
           </form>
         ) : (
-          <div className="add-task-line placeholder" onClick={() => {this.setState({editing: true})}}>
-            {this.placeholderText}
+          <div className="task-name" onClick={this.beginEditing}>
+            {this.props.task.name}
           </div>
         )}
-      </div>
+        <div className="indicators"/>
+        {/*<div className="task-buttons"/>*/}
+      </li>
     )
   }
 }
 
-export default AddTask
+export default Task
