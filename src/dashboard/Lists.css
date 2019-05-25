@@ -101,7 +101,7 @@ li.task:hover > .buttons {
   width: 708px;
   background-color: var(--very-dark-gray);
   color: var(--mint-cream);
-  padding: 0 10px;
+  padding: 0 88px 0 10px;
 }
 
 .add-task-line.placeholder {
@@ -117,14 +117,13 @@ li.task:hover > .buttons {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  margin-left: -88px;
   flex-grow: 0; /* ensures div doesn't change size */
 }
 
 .add-task > form {
   display: flex;
-  justify-content: center;
   align-items: center;
-  flex-grow: 1; /* makes the form fill the line */
 }
 
 .add-task .save-button, .add-task .cancel-button {
@@ -132,4 +131,18 @@ li.task:hover > .buttons {
   height: 32px;
   background: transparent;
   cursor: pointer;
+}
+
+svg {
+  width: 32px;
+  height: 32px;
+  fill: #FFFFFF;
+}
+
+.button.material-icons {
+  color: var(--medium-gray);
+}
+
+.button.material-icons:hover {
+  color: var(--medium-turquoise);
 }

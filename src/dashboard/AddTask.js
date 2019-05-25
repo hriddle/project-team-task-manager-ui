@@ -1,6 +1,4 @@
 import React, {Component} from 'react'
-import save from '../assets/save.svg';
-import cancel from '../assets/cancel.svg';
 
 class AddTask extends Component {
   constructor(props) {
@@ -12,6 +10,7 @@ class AddTask extends Component {
     this.placeholderText = 'Add task...';
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
@@ -32,8 +31,8 @@ class AddTask extends Component {
           <form onSubmit={this.handleSubmit}>
             <input className="add-task-line field" id="task" name="task" value={this.state.value} onChange={this.handleChange}/>
             <div className="buttons">
-              <input className="button save-button" type="image" src={save} alt="Submit" onClick={e => this.handleSubmit(e)}/>
-              <img className="button cancel-button" src={cancel} alt="Cancel" onClick={() => this.setState({editing: false, value: ''})}/>
+              <i className="button material-icons save-button" onClick={e => this.handleSubmit(e)}>check</i>
+              <i className="button material-icons cancel-button" onClick={() => this.setState({editing: false, value: ''})}>close</i>
             </div>
           </form>
         ) : (
