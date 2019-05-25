@@ -10,6 +10,7 @@ class Task extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.beginEditing = this.beginEditing.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   beginEditing() {
@@ -26,6 +27,10 @@ class Task extends Component {
     this.setState({editing: false, value: ''});
   }
 
+  handleDelete() {
+    this.props.deleteTask(this.props.id);
+  }
+
   render() {
     const editing = this.state.editing;
     return (
@@ -36,8 +41,8 @@ class Task extends Component {
           <form onSubmit={this.handleSubmit}>
             <input className="edit-task field" id="task" name="task" value={this.state.value} onChange={this.handleChange}/>
             <div className="field-buttons">
-              <i className="button material-icons save-button" onClick={e => this.handleSubmit(e)}>check</i>
-              <i className="button material-icons cancel-button" onClick={() => this.setState({editing: false, value: ''})}>close</i>
+              <i className="button material-icons" onClick={e => this.handleSubmit(e)}>check</i>
+              <i className="button material-icons" onClick={() => this.setState({editing: false, value: ''})}>close</i>
             </div>
           </form>
         ) : (
@@ -46,7 +51,9 @@ class Task extends Component {
           </div>
         )}
         <div className="indicators"/>
-        {/*<div className="task-buttons"/>*/}
+        <div className="task-buttons">
+          <i className="button material-icons" onClick={this.handleDelete}>delete</i>
+        </div>
       </li>
     )
   }

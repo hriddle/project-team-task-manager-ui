@@ -24,6 +24,13 @@ class Client {
       body: JSON.stringify(updatedTask)
     }).then(res => res.json()).then(onFulfilled).catch(onRejected);
   }
+
+  static deleteTask(listId, index, onFulfilled, onRejected) {
+    fetch(`${this.host}/lists/${listId}/tasks/${index}`, {
+      method: 'DELETE',
+      headers: {'Content-Type': 'application/json'}
+    }).then(onFulfilled).catch(onRejected);
+  }
 }
 
 export default Client

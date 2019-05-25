@@ -12,6 +12,7 @@ class PersonalList extends Component {
     };
     this.saveTask = this.saveTask.bind(this);
     this.editTask = this.editTask.bind(this);
+    this.deleteTask = this.deleteTask.bind(this);
   }
 
   componentDidMount() {
@@ -54,13 +55,23 @@ class PersonalList extends Component {
       err => alert(`Editing task was unsuccessful:\n\n${err}`))
   }
 
+  deleteTask(taskIndex) {
+    Client.deleteTask(this.props.list.id, taskIndex,
+      () => {
+        let tasks = this.state.tasks;
+        tasks.splice(taskIndex, 1);
+        this.setState({tasks: tasks});
+      },
+      err => alert(`Deleting task was unsuccessful:\n\n${err}`))
+  }
+
   render() {
     return (
       <div id="personal-list">
         <div className="list-container">
           <ul>
             {this.state.tasks.map((task, index) => {
-              return <Task task={task} id={index} editTask={this.editTask}/>
+              return <Task task={task} id={index} key={index} editTask={this.editTask} deleteTask={this.deleteTask}/>
             })}
           </ul>
           <AddTask saveTask={this.saveTask}/>

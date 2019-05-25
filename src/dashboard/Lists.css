@@ -61,7 +61,8 @@ li.task > .task-name {
   flex-grow: 1;
 }
 
-li.task > .indicators {
+li.task > .indicators,
+.add-task > .right-spacer {
   width: 88px;
   flex-grow: 0;
   height: 64px;
@@ -69,16 +70,19 @@ li.task > .indicators {
 
 li.task > .task-buttons {
   position: absolute;
-  z-index: 100;
-  top: 0;
+  z-index: 10;
+  top: 1px;
   right: 0;
   height: 64px;
   width: 168px;
   display: none;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 16px 8px;
 }
 
 li.task:hover > .task-buttons {
-  display: block;
+  display: flex;
 }
 
 /** ADD TASK SPECIFICS **/
@@ -124,30 +128,21 @@ li.task:hover > .task-buttons {
 .add-task > form, .task > form {
   display: flex;
   align-items: center;
+  flex-grow: 1;
+  z-index: 100;
 }
 
-.add-task .save-button, .add-task .cancel-button {
+.button.material-icons {
+  color: var(--medium-gray);
   width: 32px;
   height: 32px;
   background: transparent;
   cursor: pointer;
 }
 
-svg {
-  width: 32px;
-  height: 32px;
-  fill: #FFFFFF;
-}
-
-.button.material-icons {
-  color: var(--medium-gray);
-}
-
 .button.material-icons:hover {
   color: var(--medium-turquoise);
 }
-
-/* EDIT TASK SPECIFICS */
 
 .edit-task {
   height: 48px;

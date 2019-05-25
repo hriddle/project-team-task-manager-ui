@@ -40,6 +40,7 @@ class AddTask extends Component {
             {this.placeholderText}
           </div>
         )}
+        <div className="right-spacer"/>
       </div>
     )
   }
