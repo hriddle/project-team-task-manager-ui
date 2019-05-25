@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './Lists.css';
 import AddTask from "./AddTask";
 import Task from "./Task";
+import Client from "../Client"
 
 class PersonalList extends Component {
   constructor(props) {
@@ -24,22 +25,17 @@ class PersonalList extends Component {
   }
 
   fetchTasks() {
-    fetch(`${process.env.REACT_APP_API_HOST}/lists/${this.props.list.id}/tasks`, {
-      method: 'GET',
-      headers: {'Content-Type': 'application/json'}
-    }).then(res => res.json())
-      .then(tasks => this.setState({tasks: tasks}))
-      .catch(err => alert(`Fetching tasks was unsuccessful:\n\n${err}`));
+    Client.fetchTasksInList(this.props.list.id,
+      tasks => this.setState({tasks: tasks}),
+      err => alert(`Fetching tasks was unsuccessful:\n\n${err}`)
+    );
   }
 
   saveTask(taskName) {
-    return fetch(`${process.env.REACT_APP_API_HOST}/lists/${this.props.list.id}/tasks`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: `{"name": "${taskName}"}`
-    }).then(res => res.json())
-      .then(tasks => this.setState({tasks: tasks}))
-      .catch(err => alert(`Creating task was unsuccessful:\n\n${err}`));
+    Client.saveTask(this.props.list.id, {name: taskName},
+      tasks => this.setState({tasks: tasks}),
+      err => alert(`Creating task was unsuccessful:\n\n${err}`)
+    );
   }
 
   editTask(taskName, taskIndex) {
@@ -49,17 +45,13 @@ class PersonalList extends Component {
     } else {
       return; // nothing to change
     }
-    return fetch(`${process.env.REACT_APP_API_HOST}/lists/${this.props.list.id}/tasks/${taskIndex}`, {
-      method: 'PUT',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(task)
-    }).then(res => res.json())
-      .then(task => {
+    Client.updateTask(this.props.list.id, taskIndex, task,
+      task => {
         let tasks = this.state.tasks;
         tasks[taskIndex] = task;
         this.setState({tasks: tasks})
-      })
-      .catch(err => alert(`Editing task was unsuccessful:\n\n${err}`));
+      },
+      err => alert(`Editing task was unsuccessful:\n\n${err}`))
   }
 
   render() {
