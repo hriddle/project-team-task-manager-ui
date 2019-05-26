@@ -84,6 +84,7 @@ class PersonalList extends Component {
   }
 
   render() {
+    let completedTasks = this.state.tasks.filter(task => task.completionDetails !== null);
     return (
       <div id="personal-list">
         <div className="list-container">
@@ -95,7 +96,9 @@ class PersonalList extends Component {
             })}
           </ul>
           <AddTask saveTask={this.saveTask}/>
-          <CompletedList tasks={this.state.tasks.filter(task => task.completionDetails !== null)} />
+          {completedTasks.length > 0 && (
+            <CompletedList tasks={completedTasks}/>
+          )}
         </div>
       </div>
     )
