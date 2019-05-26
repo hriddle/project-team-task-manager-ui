@@ -98,7 +98,6 @@ class Task extends Component {
               <div className="day">{this.getFormattedDayOfMonth(dueDate)}</div>
             </div>
             )}
-          <div className="placeholder"/>
         </div>
         <div className="task-buttons">
           <i className="button material-icons" onClick={this.handleDelete}>delete</i>
@@ -108,7 +107,6 @@ class Task extends Component {
           ) : (
             <i className="button material-icons" onClick={this.beginEditingDueDate}>calendar_today</i>
           )}
-          <div className="placeholder"/>
         </div>
         {editingDueDate && <Calendar submitDueDateChange={this.submitDueDateChange} dueDate={new Date(this.props.task.dueDate)}/>}
       </li>
