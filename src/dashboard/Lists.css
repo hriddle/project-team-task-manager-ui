@@ -65,7 +65,6 @@ li.task > .indicators,
 .add-task > .right-spacer {
   width: 88px;
   flex-grow: 0;
-  height: 64px;
 }
 
 li.task > .task-buttons {
@@ -77,7 +76,7 @@ li.task > .task-buttons {
   width: 168px;
   display: none;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: 16px 8px;
 }
 
@@ -159,4 +158,42 @@ li.task:hover > .task-buttons {
   background-color: var(--very-dark-gray);
   color: var(--mint-cream);
   padding: 0 88px 0 10px;
+}
+
+.task-buttons > .placeholder,
+.indicators > .placeholder {
+  display: block;
+  width: 32px;
+  height: 1px;
+}
+
+li.task > .indicators {
+  z-index: 50;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.indicators > .assignment,
+.indicators > .due-date {
+  width: 32px;
+  height: 32px;
+  background-color: var(--very-dark-gray);
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  cursor: pointer;
+}
+
+.indicators > .due-date {
+  display: block;
+  width: 32px;
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 300;
+  text-align: center;
+  line-height: 12px;
+  padding: 4px 0;
+  color: var(--mint-cream);
 }
