@@ -197,3 +197,22 @@ li.task > .indicators {
   padding: 4px 0;
   color: var(--mint-cream);
 }
+
+.task .calendar {
+  padding: 10px;
+  background-color: var(--very-dark-gray);
+  z-index: 200;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.task .calendar .clear-date {
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--medium-turquoise);
+  margin-bottom: 10px;
+  text-align: center;
+  cursor: pointer;
+}

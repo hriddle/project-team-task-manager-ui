@@ -39,10 +39,16 @@ class PersonalList extends Component {
     );
   }
 
-  editTask(taskName, taskIndex) {
+  editTask(editedTask, taskIndex) {
     let task = this.state.tasks[taskIndex];
-    if (task.name !== taskName) {
-      task.name = taskName;
+    if (editedTask.name !== undefined) {
+      task.name = editedTask.name;
+    } else if (editedTask.dueDate !== undefined) {
+      if (editedTask.dueDate === '') {
+        task.dueDate = null;
+      } else {
+        task.dueDate = editedTask.dueDate.toJSON();
+      }
     } else {
       return; // nothing to change
     }
