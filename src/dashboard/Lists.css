@@ -216,3 +216,61 @@ li.task > .indicators {
   text-align: center;
   cursor: pointer;
 }
+
+.completed-tasks {
+  margin-top: 40px;
+}
+
+.completed-tasks .header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  user-select: none;
+  padding: 5px 0;
+}
+
+.completed-tasks .header span {
+  width: 218px;
+  height: 34px;
+  font-family: var(--font);
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 34px;
+  color: var(--medium-turquoise);
+}
+
+.completed-tasks i {
+  transition: transform 50ms;
+}
+
+.completed-tasks i.open {
+  transform: rotate(45deg);
+}
+
+.completed-tasks ul li {
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-bottom: 1px solid var(--very-dark-gray);
+}
+
+.completed-tasks ul li:first-child {
+  border-top: 1px solid var(--very-dark-gray);
+}
+
+.completed-tasks li.completed-task > .name {
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--mint-cream);
+  flex-grow: 1;
+}
+
+.completed-tasks li.completed-task > .date {
+  width: 56px;
+  font-size: 16px;
+  font-weight: 300;
+  text-align: right;
+  color: var(--mint-cream);
+  flex-grow: 0;
+}

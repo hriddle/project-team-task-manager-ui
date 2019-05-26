@@ -3,6 +3,7 @@ import './Lists.css';
 import AddTask from "./AddTask";
 import Task from "./Task";
 import Client from "../Client"
+import CompletedList from "./CompletedList";
 
 class PersonalList extends Component {
   constructor(props) {
@@ -94,6 +95,7 @@ class PersonalList extends Component {
             })}
           </ul>
           <AddTask saveTask={this.saveTask}/>
+          <CompletedList tasks={this.state.tasks.filter(task => task.completionDetails !== null)} />
         </div>
       </div>
     )
