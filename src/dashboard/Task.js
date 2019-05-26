@@ -17,6 +17,7 @@ class Task extends Component {
     this.beginEditingDueDate = this.beginEditingDueDate.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.submitDueDateChange = this.submitDueDateChange.bind(this);
+    this.handleClickCheckbox = this.handleClickCheckbox.bind(this);
   }
 
   beginEditing() {
@@ -62,15 +63,21 @@ class Task extends Component {
     return dd;
   }
 
+  handleClickCheckbox() {
+    this.props.completeTask(this.props.id);
+  }
+
   render() {
     const editing = this.state.editing;
     const editingDueDate = this.state.editingDueDate;
     const hasDueDate = this.props.task.dueDate !== null;
     const dueDate = new Date(this.props.task.dueDate);
+    const checkboxClass = this.props.task.completionDetails !== null ? "checkbox completed" : "checkbox";
+
     return (
       <li className="task" key={this.props.id}>
         <input type="checkbox" />
-        <div className="checkbox" />
+        <div className={checkboxClass} onClick={this.handleClickCheckbox} />
         {editing ? (
           <form onSubmit={this.handleSubmit}>
             <input className="edit-task field" id="task" name="task" value={this.state.value} onChange={this.handleChange}/>

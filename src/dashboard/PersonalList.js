@@ -13,6 +13,7 @@ class PersonalList extends Component {
     this.saveTask = this.saveTask.bind(this);
     this.editTask = this.editTask.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
+    this.completeTask = this.completeTask.bind(this);
   }
 
   componentDidMount() {
@@ -49,6 +50,8 @@ class PersonalList extends Component {
       } else {
         task.dueDate = editedTask.dueDate.toJSON();
       }
+    } else if (editedTask.completionDetails !== undefined) {
+      task.completionDetails = editedTask.completionDetails;
     } else {
       return; // nothing to change
     }
@@ -71,13 +74,23 @@ class PersonalList extends Component {
       err => alert(`Deleting task was unsuccessful:\n\n${err}`))
   }
 
+  completeTask(taskIndex) {
+    let completionDetails = {
+      completedBy: this.props.userId,
+      completedDate: new Date().toJSON()
+    };
+    this.editTask({completionDetails: completionDetails}, taskIndex);
+  }
+
   render() {
     return (
       <div id="personal-list">
         <div className="list-container">
           <ul>
             {this.state.tasks.map((task, index) => {
-              return <Task task={task} id={index} key={index} editTask={this.editTask} deleteTask={this.deleteTask}/>
+              if (task.completionDetails === null) {
+                return <Task task={task} id={index} key={index} editTask={this.editTask} deleteTask={this.deleteTask} completeTask={this.completeTask}/>
+              }
             })}
           </ul>
           <AddTask saveTask={this.saveTask}/>
