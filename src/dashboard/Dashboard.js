@@ -58,7 +58,7 @@ class Dashboard extends Component {
     getCurrentPage() {
         if (this.state.currentPage.page === pages.ALL_TEAMS) {
             this.headerText = "TEAMS";
-            return <AllTeamsView/>
+            return <AllTeamsView userId={this.props.user.userId}/>
         } else if (this.state.currentPage.page === pages.PERSONAL_LIST) {
             let list = this.state.personalLists.find(list => list.id === this.state.currentPage.id);
             this.headerText = list.name;
