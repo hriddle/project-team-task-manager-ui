@@ -25,7 +25,7 @@ class NavBar extends Component {
     let teams = [];
     if (this.props.teams.length > 0) {
       teams = this.props.teams.map(team =>
-          <div className="list-element" key={team.id}>{team.name}</div>);
+          <div className="list-element" key={team.id} onClick={() => this.props.openTeamDetail(team.id)}>{team.name}</div>);
     }
 
     return (

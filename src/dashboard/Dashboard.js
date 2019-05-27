@@ -5,10 +5,13 @@ import CreateListModal from "./CreateListModal";
 import NavBar from "./NavBar";
 import AllTeamsView from "./AllTeamsView"
 import PersonalList from "./PersonalList";
+import TeamDetailView from "./TeamDetailView"
+import PersonalListsSection from "./PersonalListsSection";
 
 const pages = {
     ALL_TEAMS: 'all-teams',
-    PERSONAL_LIST: 'personal-list'
+    PERSONAL_LIST: 'personal-list',
+    TEAM_DETAIL: "team-detail"
 };
 
 class Dashboard extends Component {
@@ -36,6 +39,7 @@ class Dashboard extends Component {
         this.toggleTeams = this.toggleTeams.bind(this);
 
         this.openPersonalList = this.openPersonalList.bind(this);
+        this.openTeamDetail = this.openTeamDetail.bind(this)
     }
 
     renderModals() {
@@ -59,6 +63,15 @@ class Dashboard extends Component {
             let list = this.state.personalLists.find(list => list.id === this.state.currentPage.id);
             this.headerText = list.name;
             return <PersonalList userId={this.props.user.userId} list={{id: list.id, name: list.name}}/>
+        } else if (this.state.currentPage.page === pages.TEAM_DETAIL) {
+          let team = this.state.teams.find(team => team.id === this.state.currentPage.id);
+          this.headerText = team.name;
+          return <TeamDetailView teamId={this.state.currentPage.id}
+                                 userId={this.props.userId}
+                                 lists={[]}
+                                 openCreateListModal={this.props.openCreateListModal}
+                                 setLists={this.props.setPersonalLists}
+                                 openList={this.props.openPersonalList}/>
         } else {
             return <div></div>
         }
@@ -108,6 +121,10 @@ class Dashboard extends Component {
         this.setState({currentPage: {page: pages.PERSONAL_LIST, id: listId}});
     }
 
+    openTeamDetail(teamId) {
+        this.setState({currentPage: {page: pages.TEAM_DETAIL, id: teamId}});
+    }
+
     render() {
         let content = this.getCurrentPage();
         return (
@@ -120,8 +137,7 @@ class Dashboard extends Component {
                                 className="header-user-name">{this.props.user.firstName}<br/> {this.props.user.lastName}
                             </div>
                             <div className="circle-thing">
-                                <div
-                                    className="header-initials">{this.props.user.firstName.charAt(0)}{this.props.user.lastName.charAt(0)}</div>
+                                <div className="header-initials">{this.props.user.firstName.charAt(0)}{this.props.user.lastName.charAt(0)}</div>
                             </div>
                         </div>
                     </div>
@@ -136,6 +152,7 @@ class Dashboard extends Component {
                         setPersonalLists={this.setPersonalLists}
                         teams={this.state.teams}
                         setTeams={this.setTeams}
+                        openTeamDetail={this.openTeamDetail}
                         openCreateTeamModal={this.openCreateTeamModal}
                         toggleTeams={this.toggleTeams}
                 />

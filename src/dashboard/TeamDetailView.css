@@ -1,0 +1,66 @@
+.team-container {
+    padding: 20px;
+}
+
+.column-left {
+    float: left;
+    width: 300px;
+}
+
+.column-right {
+    float: left;
+    width: 800px;
+    position: relative;
+}
+
+.members {
+    width: 300px;
+    background-color: var(--dark-gray);
+    padding-top: 20px;
+}
+
+.leave-team {
+    padding-top: 20px;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: var(--mint-cream);
+}
+
+.lists {
+    position: relative;
+    width: 880px;
+    padding-top: 20px;
+    /*margin: 20px auto;*/
+}
+
+.mini-circle-thing {
+    width: 32px;
+    height: 32px;
+    background-color: var(--very-dark-gray);
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    display: inline-flex;
+    margin: 5px;
+}
+
+.body-initials {
+    font-family: Montserrat;
+    font-size: 10px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: var(--mint-cream);
+}
+
+.list {
+    padding-top: 20px;
+}
