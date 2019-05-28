@@ -81,7 +81,7 @@
     letter-spacing: normal;
     color: var(--mint-cream);
     left: 24px;
-    display: flex;
+    display: inline-block;
 }
 
 .list-element {

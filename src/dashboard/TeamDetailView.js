@@ -15,7 +15,7 @@ class TeamDetailView extends Component {
   }
 
   render() {
-    return (<div className="team-container">
+    return (<div className="team-detail-container">
         <div className="column-left">
           <MembersSection teamId={this.props.teamId}/>
           <div className="leave-team">
