@@ -24,7 +24,7 @@ class MembersSection extends Component {
     if (this.state.members.length > 0){
       members = this.state.members
         .map(member =>
-          <div className="mini-circle-thing">
+          <div className="mini-circle-thing" key={member.id}>
           <div className="body-initials">{member.firstName.charAt(0).toUpperCase()}{member.lastName.charAt(0).toUpperCase()}</div>
         </div>)
     }
