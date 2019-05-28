@@ -6,7 +6,6 @@ import NavBar from "./NavBar";
 import AllTeamsView from "./AllTeamsView"
 import PersonalList from "./PersonalList";
 import TeamDetailView from "./TeamDetailView"
-import PersonalListsSection from "./PersonalListsSection";
 
 const pages = {
     ALL_TEAMS: 'all-teams',
