@@ -65,7 +65,7 @@ class Dashboard extends Component {
         } else if (this.state.currentPage.page === pages.TEAM_DETAIL) {
           let team = this.state.teams.find(team => team.id === this.state.currentPage.id);
           this.headerText = team.name;
-          return <TeamDetailView teamId={this.state.currentPage.id}
+          return <TeamDetailView teamId={team.id}
                                  userId={this.props.userId}
                                  lists={[]}
                                  openCreateListModal={this.props.openCreateListModal}

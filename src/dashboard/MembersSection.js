@@ -12,11 +12,20 @@ class MembersSection extends Component {
   }
 
   componentDidMount() {
+    this.fetchMembers()
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.teamId !== this.props.teamId) {
+      this.fetchMembers();
+    }
+  }
+
+  fetchMembers(){
     Client.fetchMembersInTeam(this.props.teamId,
       members => {
         this.setState({members: members})},
       err => alert(`Unable to get members for team:\n\n${err}`))
-
   }
 
   render() {
