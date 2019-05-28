@@ -27,13 +27,11 @@ class AllTeamsView extends Component {
       method: 'PUT',
       headers: {'Content-Type': 'application/json'}
     }).then(res => res.json())
-      .then(team => {
-          let tempTeams = this.state.teams;
-          tempTeams[teamID] = team;
-          this.setState({teams: tempTeams})
-        }
-      )
-      .catch(err => alert(`Joining team was unsuccessful:\n\n${err}`));
+        .then(list => this.props.addResource(list))
+        .then (document.getElementById(teamID).className = "member-of-team",
+            document.getElementById(teamID).textContent = "MEMBER"
+        )
+        .catch(err => alert(`Joining team was unsuccessful:\n\n${err}`));
   }
 
   render() {
