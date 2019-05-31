@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import './Dashboard.css';
 import logo from "../assets/logo-light-with-text.svg";
 import CreateListModal from "./CreateListModal";
-import NavBar from "./NavBar";
-import AllTeamsView from "./AllTeamsView"
-import PersonalList from "./PersonalList";
-import TeamDetailView from "./TeamDetailView"
+import NavBar from "./navbar/NavBar";
+import AllTeamsView from "./allteams/AllTeamsView"
+import PersonalList from "./tasklist/PersonalList";
+import TeamDetailView from "./teamdetail/TeamDetailView"
 
 const pages = {
     ALL_TEAMS: 'all-teams',

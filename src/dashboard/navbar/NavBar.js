@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import list from "../assets/list.svg";
+import list from "../../assets/list.svg";
 import PersonalListsSection from "./PersonalListsSection";
 
 class NavBar extends Component {

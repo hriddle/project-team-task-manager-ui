@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './Lists.css';
 import AddTask from "./AddTask";
 import Task from "./Task";
-import Client from "../Client"
+import Client from "../../Client"
 import CompletedList from "./CompletedList";
 
 class PersonalList extends Component {

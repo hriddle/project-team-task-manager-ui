@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import './AllTeamsView.css';
-import './Lists.css'
+import '../allteams/AllTeamsView.css';
+import '../tasklist/Lists.css'
 import './TeamDetailView.css'
 import MembersSection from './MembersSection';
 import ListsSection from './ListsSection';
-import Client from './../Client';
-import CreateListModal from "./CreateListModal";
+import Client from '../../Client';
+import CreateListModal from "../CreateListModal";
 
 class TeamDetailView extends Component {
   constructor(props) {
