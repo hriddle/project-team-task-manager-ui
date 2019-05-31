@@ -38,6 +38,13 @@ class Client {
       headers: {'Content-Type': 'application/json'}
     }).then(res => res.json()).then(onFulfilled).catch(onRejected);
   }
+
+  static fetchTeamLists(teamId, onFulfilled, onRejected) {
+    fetch(`${this.host}/teams/${teamId}/lists`, {
+      method: 'GET',
+      headers: {'Content-Type': 'application/json'}
+    }).then(res => res.json()).then(onFulfilled).catch(onRejected);
+  }
 }
 
 export default Client

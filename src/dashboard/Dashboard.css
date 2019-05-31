@@ -98,7 +98,7 @@
     cursor: pointer;
 }
 
-.new-list {
+.navbar .new-list {
     width: 276px;
     height: 55px;
     font-family: var(--font);
