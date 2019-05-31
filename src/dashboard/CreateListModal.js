@@ -38,6 +38,7 @@ class CreateListModal extends Component {
 
   render() {
     return (
+      <div className="modal-container">
       <div className="create-list-modal">
 
         <form onSubmit={this.handleSubmit}>
@@ -51,6 +52,7 @@ class CreateListModal extends Component {
             <input className="submit-button" type="submit" value="Create"/>
           </div>
         </form>
+      </div>
       </div>
     )
   }
