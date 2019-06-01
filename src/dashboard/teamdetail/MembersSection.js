@@ -21,8 +21,8 @@ class MembersSection extends Component {
 
   fetchMembers(){
     Client.fetchMembersInTeam(this.props.teamId,
-      members => this.setState({members: members}),
-      err => alert(`Unable to get members for team:\n\n${err}`))
+      members => this.setState({members: members})
+    )
   }
 
   render() {

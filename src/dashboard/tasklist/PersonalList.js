@@ -29,15 +29,13 @@ class PersonalList extends Component {
 
   fetchTasks() {
     Client.fetchTasksInList(this.props.list.id,
-      tasks => this.setState({tasks: tasks}),
-      err => alert(`Fetching tasks was unsuccessful:\n\n${err}`)
+      tasks => this.setState({tasks: tasks})
     );
   }
 
   saveTask(taskName) {
     Client.saveTask(this.props.list.id, {name: taskName},
-      tasks => this.setState({tasks: tasks}),
-      err => alert(`Creating task was unsuccessful:\n\n${err}`)
+      tasks => this.setState({tasks: tasks})
     );
   }
 
@@ -61,8 +59,8 @@ class PersonalList extends Component {
         let tasks = this.state.tasks;
         tasks[taskIndex] = task;
         this.setState({tasks: tasks})
-      },
-      err => alert(`Editing task was unsuccessful:\n\n${err}`))
+      }
+    )
   }
 
   deleteTask(taskIndex) {
@@ -71,8 +69,8 @@ class PersonalList extends Component {
         let tasks = this.state.tasks;
         tasks.splice(taskIndex, 1);
         this.setState({tasks: tasks});
-      },
-      err => alert(`Deleting task was unsuccessful:\n\n${err}`))
+      }
+    )
   }
 
   completeTask(taskIndex) {
