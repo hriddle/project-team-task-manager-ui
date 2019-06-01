@@ -48,7 +48,6 @@ class AllTeamsView extends Component {
           <div className="team-divider"/>
         </li>
       );
-      debugger
     }
     return (
       <div className="teams">
