@@ -1,4 +1,4 @@
-#personal-list {
+#personal-list, #team-list {
   position: relative;
 }
 
@@ -6,6 +6,20 @@
   position: relative;
   width: 880px;
   margin: 20px auto;
+}
+
+#team-list > .list-container {
+  position: relative;
+  width: 800px;
+  margin: 20px auto;
+}
+
+.list-container > .list-name {
+  height: 56px;
+  font-size: 28px;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--mint-cream);
 }
 
 ul, li {
@@ -236,7 +250,7 @@ li.task > .indicators {
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
-  color: var(--medium-turquoise);
+  color: var(--mint-cream);
 }
 
 .completed-tasks i {

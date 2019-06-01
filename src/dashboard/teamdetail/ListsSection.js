@@ -11,8 +11,10 @@ class ListsSection extends Component {
       <div className="section team-lists">
         <div className="section-title">Lists</div>
         <div className="section-content">
-          {this.props.lists.map((list, index) =>
-            <div className="section-row list-name" key={index}>{list.name}</div>
+          {this.props.lists.map(list =>
+            <div className="section-row list-name" key={list.id} onClick={() => this.props.openList(list.id)}>
+              {list.name}
+            </div>
           )}
           <div className="section-row new-list" onClick={this.props.openCreateListModal}>NEW LIST</div>
         </div>

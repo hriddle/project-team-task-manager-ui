@@ -6,22 +6,31 @@ import MembersSection from './MembersSection';
 import ListsSection from './ListsSection';
 import Client from '../../Client';
 import CreateModal from "../CreateModal";
+import TaskList from "../tasklist/TaskList";
 
 class TeamDetailView extends Component {
   constructor(props) {
     super(props);
     this.state = {
       openCreateListModal: false,
-      lists: []
+      lists: [],
+      selectedList: null
     };
     this.fetchTeamLists = this.fetchTeamLists.bind(this);
     this.openCreateListModal = this.openCreateListModal.bind(this);
     this.closeCreateListModal = this.closeCreateListModal.bind(this);
     this.addNewListToTeam = this.addNewListToTeam.bind(this);
+    this.openList = this.openList.bind(this);
   }
 
   componentDidMount() {
     this.fetchTeamLists()
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.teamId !== this.props.teamId) {
+      this.fetchTeamLists()
+    }
   }
 
   openCreateListModal() {
@@ -40,7 +49,7 @@ class TeamDetailView extends Component {
 
   fetchTeamLists() {
     Client.fetchTeamLists(this.props.teamId,
-      lists => this.setState({lists: lists})
+      lists => this.setState({lists: lists, selectedList: null})
     )
   }
 
@@ -51,16 +60,25 @@ class TeamDetailView extends Component {
     }
   }
 
+  openList(listId) {
+    let list = this.state.lists.find(list => listId === list.id);
+    this.setState({selectedList: list})
+  }
+
   render() {
+    let content = '';
+    if (this.state.selectedList !== null) {
+      content = <TaskList userId={this.props.userId} list={this.state.selectedList}/>
+    }
     return (<div className="team-detail-container">
         {this.renderModals()}
         <div className="team-navigation">
           <MembersSection teamId={this.props.teamId}/>
-          <ListsSection teamId={this.props.teamId} openCreateListModal={this.openCreateListModal} lists={this.state.lists}/>
+          <ListsSection teamId={this.props.teamId} openCreateListModal={this.openCreateListModal}
+                        lists={this.state.lists} openList={this.openList}/>
           <div className="section"><div className="leave-team">Leave Team</div></div>
         </div>
-        <div className="team-content">
-        </div>
+        <div className="team-content">{content}</div>
       </div>
     )
   }

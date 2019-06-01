@@ -5,7 +5,7 @@ import Task from "./Task";
 import Client from "../../Client"
 import CompletedList from "./CompletedList";
 
-class PersonalList extends Component {
+class TaskList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -82,10 +82,13 @@ class PersonalList extends Component {
   }
 
   render() {
+    let isTeamList = this.props.userId !== this.props.list.ownerId;
+    let listType = isTeamList ? "team-list" : "personal-list";
     let completedTasks = this.state.tasks.filter(task => task.completionDetails !== null);
     return (
-      <div id="personal-list">
+      <div id={listType}>
         <div className="list-container">
+          { isTeamList && <div className="list-name">{this.props.list.name}</div>}
           <ul>
             {this.state.tasks.map((task, index) => {
               if (task.completionDetails === null) {
@@ -103,4 +106,4 @@ class PersonalList extends Component {
   }
 }
 
-export default PersonalList
+export default TaskList

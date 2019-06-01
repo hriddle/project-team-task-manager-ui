@@ -4,7 +4,7 @@ import logo from "../assets/logo-light-with-text.svg";
 import CreateModal from "./CreateModal";
 import NavBar from "./navbar/NavBar";
 import AllTeamsView from "./allteams/AllTeamsView"
-import PersonalList from "./tasklist/PersonalList";
+import TaskList from "./tasklist/TaskList";
 import TeamDetailView from "./teamdetail/TeamDetailView"
 
 const pages = {
@@ -59,11 +59,11 @@ class Dashboard extends Component {
         } else if (this.state.currentPage.page === pages.PERSONAL_LIST) {
             let list = this.state.personalLists.find(list => list.id === this.state.currentPage.id);
             this.headerText = list.name;
-            return <PersonalList userId={this.props.user.userId} list={{id: list.id, name: list.name}}/>
+            return <TaskList userId={this.props.user.userId} list={list}/>
         } else if (this.state.currentPage.page === pages.TEAM_DETAIL) {
           let team = this.state.teams.find(team => team.id === this.state.currentPage.id);
           this.headerText = team.name;
-          return <TeamDetailView teamId={team.id} userId={this.props.userId} />
+          return <TeamDetailView teamId={team.id} userId={this.props.user.userId} />
         } else {
             return <div></div>
         }
