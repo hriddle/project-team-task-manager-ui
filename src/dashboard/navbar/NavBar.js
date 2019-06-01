@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import list from "../../assets/list.svg";
 import PersonalListsSection from "./PersonalListsSection";
+import Client from '../../Client'
 
 class NavBar extends Component {
   constructor(props) {
@@ -9,16 +10,7 @@ class NavBar extends Component {
   }
 
   componentDidMount() {
-    this.fetchTeams(this.props.userId);
-  }
-
-  fetchTeams(userId){
-    fetch(`${process.env.REACT_APP_API_HOST}/teams?userId=${userId}`, {
-      method: "GET",
-      headers: {"Content-Type": "application/json"}
-    }).then(res => res.json())
-        .then(lists => this.props.setTeams(lists))
-        .catch(err => alert(`Fetching teams was unsuccessful:\n\n${err}`))
+    Client.fetchTeamsByUser(this.props.userId, teams => this.props.setTeams(teams));
   }
 
   render() {

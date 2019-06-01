@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Client from '../../Client'
 
 class PersonalListsSection extends Component {
   constructor(props) {
@@ -8,16 +9,7 @@ class PersonalListsSection extends Component {
   }
 
   componentDidMount() {
-    this.fetchPersonalLists(this.props.userId);
-  }
-
-  fetchPersonalLists(userId) {
-    fetch(`${process.env.REACT_APP_API_HOST}/users/${userId}/lists`, {
-      method: 'GET',
-      headers: {'Content-Type': 'application/json'}
-    }).then(res => res.json())
-      .then(lists => this.props.setLists(lists))
-      .catch(err => alert(`Fetching personal lists was unsuccessful:\n\n${err}`))
+    Client.fetchPersonalLists(this.props.userId, lists => this.props.setLists(lists));
   }
 
   render() {

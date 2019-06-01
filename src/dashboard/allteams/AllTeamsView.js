@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './AllTeamsView.css';
+import Client from '../../Client'
 
 class AllTeamsView extends Component {
   constructor(props) {
@@ -10,28 +11,17 @@ class AllTeamsView extends Component {
   }
 
   componentDidMount() {
-    this.fetchAllTeams()
-  }
-
-  fetchAllTeams() {
-    fetch(`${process.env.REACT_APP_API_HOST}/teams`, {
-      method: "GET",
-      headers: {"Content-Type": "application/json"}
-    }).then(res => res.json())
-      .then(lists => this.setState({teams: lists}))
-      .catch(err => alert(`Fetching teams was unsuccessful:\n\n${err}`))
+    Client.fetchAllTeams(teams => this.setState({teams: teams}));
   }
 
   joinTeam(teamID, userID) {
-    return fetch(`${process.env.REACT_APP_API_HOST}/teams/${teamID}/${userID}`, {
-      method: 'PUT',
-      headers: {'Content-Type': 'application/json'}
-    }).then(res => res.json())
-        .then(list => this.props.addResource(list))
-        .then (document.getElementById(teamID).className = "member-of-team",
-            document.getElementById(teamID).textContent = "MEMBER"
-        )
-        .catch(err => alert(`Joining team was unsuccessful:\n\n${err}`));
+    Client.addMemberToTeam(teamID, userID,
+      team => {
+        this.props.addResource(team);
+        document.getElementById(teamID).className = "member-of-team";
+        document.getElementById(teamID).textContent = "MEMBER";
+      }
+    );
   }
 
   render() {

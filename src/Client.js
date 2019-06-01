@@ -63,6 +63,34 @@ class Client {
       body: JSON.stringify(team)
     }).then(this.resultAsJson).then(onFulfilled).catch(onRejected);
   }
+
+  static fetchAllTeams(onFulfilled, onRejected = this.defaultErrorCallback) {
+    fetch(`${this.host}/teams`, {
+      method: "GET",
+      headers: {"Content-Type": "application/json"}
+    }).then(this.resultAsJson).then(onFulfilled).catch(onRejected)
+  }
+
+  static addMemberToTeam(teamId, userId, onFulfilled, onRejected = this.defaultErrorCallback) {
+    return fetch(`${this.host}/teams/${teamId}/${userId}`, {
+      method: 'PUT',
+      headers: {'Content-Type': 'application/json'}
+    }).then(this.resultAsJson).then(onFulfilled).catch(onRejected);
+  }
+
+  static fetchTeamsByUser(userId, onFulfilled, onRejected = this.defaultErrorCallback) {
+    fetch(`${this.host}/teams?userId=${userId}`, {
+      method: "GET",
+      headers: {"Content-Type": "application/json"}
+    }).then(this.resultAsJson).then(onFulfilled).catch(onRejected)
+  }
+
+  static fetchPersonalLists(userId, onFulfilled, onRejected = this.defaultErrorCallback) {
+    fetch(`${this.host}/users/${userId}/lists`, {
+      method: 'GET',
+      headers: {'Content-Type': 'application/json'}
+    }).then(this.resultAsJson).then(onFulfilled).catch(onRejected)
+  }
 }
 
 export default Client
