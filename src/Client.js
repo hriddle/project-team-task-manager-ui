@@ -1,6 +1,7 @@
 class Client {
 
   static host = process.env.REACT_APP_API_HOST;
+  static defaultErrorCallback = (err) => console.error(JSON.stringify(err))
 
   static fetchTasksInList(listId, onFulfilled, onRejected) {
     fetch(`${this.host}/lists/${listId}/tasks`, {
@@ -43,6 +44,22 @@ class Client {
     fetch(`${this.host}/teams/${teamId}/lists`, {
       method: 'GET',
       headers: {'Content-Type': 'application/json'}
+    }).then(res => res.json()).then(onFulfilled).catch(onRejected);
+  }
+
+  static createList(owner, id, listName, onFulfilled, onRejected = this.defaultErrorCallback) {
+    fetch(`${this.host}/${owner}s/${id}/lists`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: listName
+    }).then(res => res.json()).then(onFulfilled).catch(onRejected);
+  }
+
+  static createTeam(team, onFulfilled, onRejected = this.defaultErrorCallback) {
+    fetch(`${this.host}/teams`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(team)
     }).then(res => res.json()).then(onFulfilled).catch(onRejected);
   }
 }

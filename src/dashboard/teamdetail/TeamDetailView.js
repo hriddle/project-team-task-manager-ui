@@ -5,7 +5,7 @@ import './TeamDetailView.css'
 import MembersSection from './MembersSection';
 import ListsSection from './ListsSection';
 import Client from '../../Client';
-import CreateListModal from "../CreateListModal";
+import CreateModal from "../CreateModal";
 
 class TeamDetailView extends Component {
   constructor(props) {
@@ -40,15 +40,14 @@ class TeamDetailView extends Component {
 
   fetchTeamLists() {
     Client.fetchTeamLists(this.props.teamId,
-      lists => this.setState({lists: lists}),
-      err => alert(`Unable to get lists for team:\n\n${err}`)
+      lists => this.setState({lists: lists})
     )
   }
 
   renderModals() {
     if (this.state.openCreateListModal) {
-      return <CreateListModal closeModal={this.closeCreateListModal} ownerId={this.props.teamId}
-                              addResource={this.addNewListToTeam} name="List Name"/>
+      return <CreateModal closeModal={this.closeCreateListModal} owner={{id: this.props.teamId, type: 'team'}}
+                          addList={this.addNewListToTeam} type="list"/>
     }
   }
 

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './Dashboard.css';
 import logo from "../assets/logo-light-with-text.svg";
-import CreateListModal from "./CreateListModal";
+import CreateModal from "./CreateModal";
 import NavBar from "./navbar/NavBar";
 import AllTeamsView from "./allteams/AllTeamsView"
 import PersonalList from "./tasklist/PersonalList";
@@ -43,14 +43,12 @@ class Dashboard extends Component {
 
     renderModals() {
         if (this.state.openCreatePersonalListModal) {
-            return <CreateListModal closeModal={this.closeCreateListModal} ownerId={this.props.user.userId}
-                                    addResource={this.addNewListToPersonalLists}
-                                    name="List Name"/>
+            return <CreateModal closeModal={this.closeCreateListModal} owner={{id: this.props.user.userId, type: 'user'}}
+                                addList={this.addNewListToPersonalLists} type="list"/>
         }
         if (this.state.openCreateTeamModal) {
-            return <CreateListModal closeModal={this.closeCreateTeamModal} ownerId={this.props.user.userId}
-                                    addResource={this.addNewTeamToTeamList}
-                                    name="Team Name"/>
+            return <CreateModal closeModal={this.closeCreateTeamModal} userId={this.props.user.userId}
+                                addTeam={this.addNewTeamToTeamList} type="team"/>
         }
     }
 
@@ -93,10 +91,10 @@ class Dashboard extends Component {
         this.setState({personalLists: lists})
     }
 
-    addNewTeamToTeamList(list) {
-        let lists = this.state.teams;
-        lists.push(list);
-        this.setState({teams: lists})
+    addNewTeamToTeamList(team) {
+        let teams = this.state.teams;
+        teams.push(team);
+        this.setState({teams: teams})
     }
 
     setPersonalLists(lists) {
