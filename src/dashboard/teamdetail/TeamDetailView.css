@@ -36,6 +36,7 @@
   justify-content: center;
   display: inline-flex;
   margin: 5px;
+  cursor: default;
 }
 
 .body-initials {
@@ -67,6 +68,7 @@
 .section .section-row {
   height: 30px;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 
 .list-name {
