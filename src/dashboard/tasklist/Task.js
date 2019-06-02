@@ -47,6 +47,9 @@ class Task extends Component {
     this.props.editTask({dueDate: day}, this.props.id);
   }
 
+  beginEditingAssignedUser() {
+  }
+
   getFormattedMonth(date) {
     let mm = date.getMonth() + 1;
     if (mm < 10) {
@@ -67,11 +70,22 @@ class Task extends Component {
     this.props.completeTask(this.props.id);
   }
 
+  findUserById(userId) {
+    return this.props.members.find(member => member.id === userId);
+  }
+
+  formatUserInitials(user) {
+    return `${user.firstName.charAt(0)}${user.lastName.charAt(0)}`
+  }
+
   render() {
     const editing = this.state.editing;
     const editingDueDate = this.state.editingDueDate;
-    const hasDueDate = this.props.task.dueDate !== null;
-    const dueDate = new Date(this.props.task.dueDate);
+    const isTeamList = this.props.isTeamList;
+    const hasDueDate = this.props.task.dueDate !== undefined && this.props.task.dueDate !== null;
+    const dueDate = hasDueDate ? new Date(this.props.task.dueDate) : undefined;
+    const isAssigned = this.props.task.assignedUser !== undefined && this.props.task.assignedUser !== null;
+    const assignedUserInitials = isAssigned ? this.formatUserInitials(this.findUserById(this.props.task.assignedUser)) : undefined;
     const checkboxClass = this.props.task.completionDetails !== null ? "checkbox completed" : "checkbox";
 
     return (
@@ -98,15 +112,19 @@ class Task extends Component {
               <div className="day">{this.getFormattedDayOfMonth(dueDate)}</div>
             </div>
             )}
+          {isTeamList && (!isAssigned ? <div className="placeholder"/> : (
+            <div className="assignment" onClick={this.beginEditingAssignedUser}>{assignedUserInitials}</div>
+          ))}
         </div>
         <div className="task-buttons">
           <i className="button material-icons" onClick={this.handleDelete}>delete</i>
           <i className="button material-icons" onClick={this.beginEditing}>edit</i>
-          {hasDueDate ? (
-            <div className="placeholder"/>
-          ) : (
+          {hasDueDate ? (<div className="placeholder" onClick={this.beginEditingDueDate}/>) : (
             <i className="button material-icons" onClick={this.beginEditingDueDate}>calendar_today</i>
           )}
+          {isTeamList && (isAssigned ? (<div className="placeholder" onClick={this.beginEditingAssignedUser}/>) : (
+            <i className="button material-icons" onClick={this.beginEditingAssignedUser}>person</i>
+          ))}
         </div>
         {editingDueDate && <Calendar submitDueDateChange={this.submitDueDateChange} dueDate={new Date(this.props.task.dueDate)}/>}
       </li>

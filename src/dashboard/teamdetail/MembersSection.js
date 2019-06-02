@@ -1,34 +1,16 @@
 import React, {Component} from 'react'
-import Client from "../../Client"
 
 class MembersSection extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      members: []
     };
-  }
-
-  componentDidMount() {
-    this.fetchMembers()
-  }
-
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevProps.teamId !== this.props.teamId) {
-      this.fetchMembers();
-    }
-  }
-
-  fetchMembers(){
-    Client.fetchMembersInTeam(this.props.teamId,
-      members => this.setState({members: members})
-    )
   }
 
   render() {
     let members = "";
-    if (this.state.members.length > 0){
-      members = this.state.members.map(member =>
+    if (this.props.members.length > 0){
+      members = this.props.members.map(member =>
         <div className="mini-circle-thing" key={member.id}>
           <div className="body-initials">{member.firstName.charAt(0).toUpperCase()}{member.lastName.charAt(0).toUpperCase()}</div>
         </div>

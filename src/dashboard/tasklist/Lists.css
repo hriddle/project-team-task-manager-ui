@@ -77,8 +77,17 @@ li.task > .task-name {
 
 li.task > .indicators,
 .add-task > .right-spacer {
-  width: 48px;
   flex-grow: 0;
+}
+
+#personal-list li.task > .indicators,
+#personal-list .add-task > .right-spacer {
+  width: 48px;
+}
+
+#team-list li.task > .indicators,
+#team-list .add-task > .right-spacer {
+  width: 88px;
 }
 
 li.task > .task-buttons {
@@ -87,11 +96,18 @@ li.task > .task-buttons {
   top: 1px;
   right: 0;
   height: 64px;
-  width: 128px;
   display: none;
   align-items: center;
   justify-content: space-between;
   padding: 16px 8px;
+}
+
+#personal-list li.task > .task-buttons {
+  width: 128px;
+}
+
+#team-list li.task > .task-buttons {
+  width: 168px;
 }
 
 li.task:hover > .task-buttons {
@@ -115,7 +131,6 @@ li.task:hover > .task-buttons {
 }
 
 .add-task-line.field {
-  width: 708px;
   background-color: var(--very-dark-gray);
   color: var(--mint-cream);
   padding: 0 48px 0 10px;
@@ -168,7 +183,6 @@ li.task:hover > .task-buttons {
 }
 
 .edit-task.field {
-  width: 708px;
   background-color: var(--very-dark-gray);
   color: var(--mint-cream);
   padding: 0 88px 0 10px;
@@ -178,11 +192,11 @@ li.task:hover > .task-buttons {
 .indicators > .placeholder {
   display: block;
   width: 32px;
-  height: 1px;
+  height: 32px;
+  cursor: pointer;
 }
 
 li.task > .indicators {
-  z-index: 50;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -198,18 +212,24 @@ li.task > .indicators {
   justify-content: center;
   display: flex;
   cursor: pointer;
+  font-family: var(--font);
+  color: var(--mint-cream);
 }
 
 .indicators > .due-date {
   display: block;
   width: 32px;
-  font-family: var(--font);
   font-size: 12px;
   font-weight: 300;
   text-align: center;
   line-height: 12px;
   padding: 4px 0;
-  color: var(--mint-cream);
+}
+
+.indicators > .assignment {
+  font-size: 10px;
+  font-weight: 300;
+  text-align: center;
 }
 
 .task .calendar {

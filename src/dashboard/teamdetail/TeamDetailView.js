@@ -13,6 +13,7 @@ class TeamDetailView extends Component {
     super(props);
     this.state = {
       openCreateListModal: false,
+      members: [],
       lists: [],
       selectedList: null
     };
@@ -24,13 +25,21 @@ class TeamDetailView extends Component {
   }
 
   componentDidMount() {
-    this.fetchTeamLists()
+    this.fetchTeamLists();
+    this.fetchMembers();
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.teamId !== this.props.teamId) {
-      this.fetchTeamLists()
+      this.fetchTeamLists();
+      this.fetchMembers();
     }
+  }
+
+  fetchMembers(){
+    Client.fetchMembersInTeam(this.props.teamId,
+      members => this.setState({members: members})
+    )
   }
 
   openCreateListModal() {
@@ -68,12 +77,12 @@ class TeamDetailView extends Component {
   render() {
     let content = '';
     if (this.state.selectedList !== null) {
-      content = <TaskList userId={this.props.userId} list={this.state.selectedList}/>
+      content = <TaskList userId={this.props.userId} list={this.state.selectedList} members={this.state.members}/>
     }
     return (<div className="team-detail-container">
         {this.renderModals()}
         <div className="team-navigation">
-          <MembersSection teamId={this.props.teamId}/>
+          <MembersSection teamId={this.props.teamId} members={this.state.members}/>
           <ListsSection teamId={this.props.teamId} openCreateListModal={this.openCreateListModal}
                         lists={this.state.lists} openList={this.openList}/>
           <div className="section"><div className="leave-team">Leave Team</div></div>
