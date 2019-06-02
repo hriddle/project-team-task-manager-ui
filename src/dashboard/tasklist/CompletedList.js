@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 class CompletedList extends Component {
   constructor(props) {
@@ -45,6 +45,9 @@ class CompletedList extends Component {
               return <li className="completed-task">
                 <div className="name">{task.name}</div>
                 <div className="date">{this.getFormattedMonth(completedDate)}/{this.getFormattedDayOfMonth(completedDate)}</div>
+                {this.props.showCompletedBy &&
+                  <div className="completed-by">{this.props.getFullName(task.completionDetails.completedBy)}</div>
+                }
               </li>
             }) }
           </ul>

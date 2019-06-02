@@ -355,3 +355,12 @@ li.task > .indicators {
   color: var(--mint-cream);
   flex-grow: 0;
 }
+
+.completed-tasks li.completed-task > .completed-by {
+  width: 140px;
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--mint-cream);
+  flex-grow: 0;
+  margin-left: 30px;
+}

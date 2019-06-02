@@ -15,6 +15,7 @@ class TaskList extends Component {
     this.editTask = this.editTask.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
     this.completeTask = this.completeTask.bind(this);
+    this.getFullName = this.getFullName.bind(this);
   }
 
   componentDidMount() {
@@ -87,6 +88,12 @@ class TaskList extends Component {
     this.editTask({completionDetails: completionDetails}, taskIndex);
   }
 
+  getFullName(userId) {
+    let user = this.props.members.find(member => member.id === userId);
+    if (!user) return '';
+    return `${user.firstName} ${user.lastName}`
+  }
+
   render() {
     let isTeamList = this.props.userId !== this.props.list.ownerId;
     let listType = isTeamList ? "team-list" : "personal-list";
@@ -107,9 +114,9 @@ class TaskList extends Component {
             })}
           </ul>
           <AddTask saveTask={this.saveTask}/>
-          {completedTasks.length > 0 && (
-            <CompletedList tasks={completedTasks}/>
-          )}
+          {completedTasks.length > 0 &&
+            <CompletedList tasks={completedTasks} showCompletedBy={isTeamList} getFullName={this.getFullName}/>
+          }
         </div>
       </div>
     )
