@@ -9,15 +9,19 @@ class Task extends Component {
     this.state = {
       editing: false,
       value: '',
-      editingDueDate: false
+      editingDueDate: false,
+      editingAssignedUser: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.beginEditing = this.beginEditing.bind(this);
     this.beginEditingDueDate = this.beginEditingDueDate.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
     this.submitDueDateChange = this.submitDueDateChange.bind(this);
     this.closeCalendar = this.closeCalendar.bind(this);
+    this.beginEditingAssignedUser = this.beginEditingAssignedUser.bind(this);
+    this.submitAssignedUserChange = this.submitAssignedUserChange.bind(this);
+    this.closeMemberPicker = this.closeMemberPicker.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
     this.handleClickCheckbox = this.handleClickCheckbox.bind(this);
   }
 
@@ -53,6 +57,16 @@ class Task extends Component {
   }
 
   beginEditingAssignedUser() {
+    this.setState({editingAssignedUser: true})
+  }
+
+  submitAssignedUserChange(id) {
+    this.closeMemberPicker();
+    this.props.editTask({assignedUser: id}, this.props.id);
+  }
+
+  closeMemberPicker() {
+    this.setState({editingAssignedUser: false})
   }
 
   getFormattedMonth(date) {
@@ -86,6 +100,7 @@ class Task extends Component {
   render() {
     const editing = this.state.editing;
     const editingDueDate = this.state.editingDueDate;
+    const editingAssignedUser = this.state.editingAssignedUser;
     const isTeamList = this.props.isTeamList;
     const hasDueDate = this.props.task.dueDate !== undefined && this.props.task.dueDate !== null;
     const dueDate = hasDueDate ? new Date(this.props.task.dueDate) : undefined;
@@ -131,7 +146,14 @@ class Task extends Component {
             <i className="button material-icons" onClick={this.beginEditingAssignedUser}>person</i>
           ))}
         </div>
-        {editingDueDate && <Calendar close={this.closeCalendar} submitDueDateChange={this.submitDueDateChange} dueDate={new Date(this.props.task.dueDate)}/>}
+        {editingDueDate &&
+          <Calendar close={this.closeCalendar} submit={this.submitDueDateChange}
+                    dueDate={new Date(this.props.task.dueDate)}/>
+        }
+        {editingAssignedUser &&
+          <MemberPicker close={this.closeMemberPicker} submit={this.submitAssignedUserChange}
+                        members={this.props.members} assignedUser={this.props.task.assignedUser}/>
+        }
       </li>
     )
   }
@@ -147,11 +169,11 @@ class Calendar extends Component {
   }
 
   handleDayClick(day) {
-    this.props.submitDueDateChange(day);
+    this.props.submit(day);
   }
 
   clearDueDate() {
-    this.props.submitDueDateChange('');
+    this.props.submit('');
   }
 
   render() {
@@ -161,6 +183,39 @@ class Calendar extends Component {
         <div className="buttons">
           <div className="close" onClick={this.props.close}>Close</div>
           <div className="clear-date" onClick={this.clearDueDate}>Clear</div>
+        </div>
+      </div>
+    )
+  }
+}
+
+class MemberPicker extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  formatUserInitials(user) {
+    return `${user.firstName.charAt(0)}${user.lastName.charAt(0)}`
+  }
+
+  render() {
+    return (
+      <div className="member-picker">
+        <ul>
+          {this.props.members.map(member => {
+            return (
+              <li className={member.id === this.props.assignedUser ? "selected" : ""} key={member.id}
+                  onClick={() => this.props.submit(member.id)}>
+                <div className="initials">{this.formatUserInitials(member)}</div>
+                <div className="name">{member.firstName} {member.lastName}</div>
+              </li>
+            )
+          })}
+        </ul>
+        <div className="buttons">
+          <div className="close" onClick={this.props.close}>Close</div>
+          <div className="clear-date" onClick={() =>this.props.submit('')}>Clear</div>
         </div>
       </div>
     )

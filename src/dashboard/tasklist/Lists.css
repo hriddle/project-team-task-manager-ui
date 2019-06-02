@@ -203,6 +203,7 @@ li.task > .indicators {
 }
 
 .indicators > .assignment,
+.member-picker .initials,
 .indicators > .due-date {
   width: 32px;
   height: 32px;
@@ -226,13 +227,14 @@ li.task > .indicators {
   padding: 4px 0;
 }
 
-.indicators > .assignment {
+.indicators > .assignment,
+.member-picker .initials {
   font-size: 10px;
   font-weight: 300;
   text-align: center;
 }
 
-.task .calendar {
+.task .calendar, .task .member-picker {
   padding: 10px;
   background-color: var(--very-dark-gray);
   z-index: 200;
@@ -241,11 +243,42 @@ li.task > .indicators {
   right: 0;
 }
 
-.task .calendar .buttons {
+.task .member-picker ul {
+  height: 300px;
+  width: 300px;
+  overflow: scroll;
+}
+
+.task .member-picker ul li {
+  display: flex;
+  font-size: 18px;
+  align-items: center;
+  margin: 5px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.task .member-picker ul li.selected {
+  color: var(--medium-turquoise);
+  font-weight: bold;
+}
+
+.task .member-picker ul li > * {
+  padding: 5px;
+}
+
+.task .member-picker ul li:hover {
+  background-color: var(--english-green);
+  color: var(--mint-cream);
+}
+
+.task .calendar .buttons,
+.task .member-picker .buttons {
   display: flex;
 }
 
-.task .calendar .buttons > * {
+.task .calendar .buttons > *,
+.task .member-picker .buttons > * {
   flex-grow: 1;
   font-size: 16px;
   font-weight: bold;
@@ -255,11 +288,13 @@ li.task > .indicators {
   cursor: pointer;
 }
 
-.task .calendar .buttons .close {
+.task .calendar .buttons .close,
+.task .member-picker .buttons .close {
   color: var(--medium-gray);
 }
 
-.task .calendar .buttons .clear-date {
+.task .calendar .buttons .clear-date,
+.task .member-picker .buttons .clear-date {
   color: var(--medium-turquoise);
 }
 

@@ -49,6 +49,12 @@ class TaskList extends Component {
       } else {
         task.dueDate = editedTask.dueDate.toJSON();
       }
+    } else if (editedTask.assignedUser !== undefined) {
+      if (editedTask.assignedUser === '') {
+        task.assignedUser = null;
+      } else {
+        task.assignedUser = editedTask.assignedUser;
+      }
     } else if (editedTask.completionDetails !== undefined) {
       task.completionDetails = editedTask.completionDetails;
     } else {
