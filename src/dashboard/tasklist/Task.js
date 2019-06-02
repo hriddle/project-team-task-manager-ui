@@ -17,6 +17,7 @@ class Task extends Component {
     this.beginEditingDueDate = this.beginEditingDueDate.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.submitDueDateChange = this.submitDueDateChange.bind(this);
+    this.closeCalendar = this.closeCalendar.bind(this);
     this.handleClickCheckbox = this.handleClickCheckbox.bind(this);
   }
 
@@ -43,8 +44,12 @@ class Task extends Component {
   }
 
   submitDueDateChange(day) {
-    this.setState({ editingDueDate: false });
+    this.closeCalendar();
     this.props.editTask({dueDate: day}, this.props.id);
+  }
+
+  closeCalendar() {
+    this.setState({ editingDueDate: false });
   }
 
   beginEditingAssignedUser() {
@@ -126,7 +131,7 @@ class Task extends Component {
             <i className="button material-icons" onClick={this.beginEditingAssignedUser}>person</i>
           ))}
         </div>
-        {editingDueDate && <Calendar submitDueDateChange={this.submitDueDateChange} dueDate={new Date(this.props.task.dueDate)}/>}
+        {editingDueDate && <Calendar close={this.closeCalendar} submitDueDateChange={this.submitDueDateChange} dueDate={new Date(this.props.task.dueDate)}/>}
       </li>
     )
   }
@@ -153,7 +158,10 @@ class Calendar extends Component {
     return (
       <div className="calendar">
         <DayPicker onDayClick={this.handleDayClick} selectedDays={this.props.dueDate}/>
-        <div className="clear-date" onClick={this.clearDueDate}>Clear</div>
+        <div className="buttons">
+          <div className="close" onClick={this.props.close}>Close</div>
+          <div className="clear-date" onClick={this.clearDueDate}>Clear</div>
+        </div>
       </div>
     )
   }

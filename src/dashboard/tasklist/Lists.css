@@ -241,14 +241,26 @@ li.task > .indicators {
   right: 0;
 }
 
-.task .calendar .clear-date {
+.task .calendar .buttons {
+  display: flex;
+}
+
+.task .calendar .buttons > * {
+  flex-grow: 1;
   font-size: 16px;
   font-weight: bold;
   text-transform: uppercase;
-  color: var(--medium-turquoise);
   margin-bottom: 10px;
   text-align: center;
   cursor: pointer;
+}
+
+.task .calendar .buttons .close {
+  color: var(--medium-gray);
+}
+
+.task .calendar .buttons .clear-date {
+  color: var(--medium-turquoise);
 }
 
 .completed-tasks {
