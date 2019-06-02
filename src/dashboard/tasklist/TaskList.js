@@ -97,13 +97,13 @@ class TaskList extends Component {
           { isTeamList && <div className="list-name">{this.props.list.name}</div>}
           <ul>
             {this.state.tasks.map((task, index) => {
-              if (task.completionDetails === null) {
-                return <Task task={task} id={index} key={index} isTeamList={isTeamList}
-                             members={this.props.members}
-                             editTask={this.editTask}
-                             deleteTask={this.deleteTask}
-                             completeTask={this.completeTask}/>
-              }
+              if (task.completionDetails !== null) return '';
+              return <Task task={task} id={index} key={index} isTeamList={isTeamList}
+                           members={this.props.members}
+                           editTask={this.editTask}
+                           deleteTask={this.deleteTask}
+                           completeTask={this.completeTask}/>
+
             })}
           </ul>
           <AddTask saveTask={this.saveTask}/>
