@@ -48,11 +48,18 @@ class Client {
     }).then(this.resultAsJson).then(onFulfilled).catch(onRejected);
   }
 
-  static createList(owner, id, listName, onFulfilled, onRejected = this.defaultErrorCallback) {
+  static fetchTeamRetrospectives(teamId, onFulfilled, onRejected = this.defaultErrorCallback) {
+    fetch(`${this.host}/teams/${teamId}/lists?type=retrospective`, {
+      method: 'GET',
+      headers: {'Content-Type': 'application/json'}
+    }).then(this.resultAsJson).then(onFulfilled).catch(onRejected);
+  }
+
+  static createList(owner, id, list, onFulfilled, onRejected = this.defaultErrorCallback) {
     fetch(`${this.host}/${owner}s/${id}/lists`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: listName
+      body: JSON.stringify(list)
     }).then(this.resultAsJson).then(onFulfilled).catch(onRejected);
   }
 
