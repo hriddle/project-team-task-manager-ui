@@ -4,7 +4,8 @@ import Client from '../Client'
 const types = {
   LIST: 'list',
   TEAM: 'team',
-  RETRO: 'retrospective'
+  RETRO: 'retrospective',
+  POST_MORTEM: "post-mortem"
 };
 
 class CreateModal extends Component {
@@ -43,6 +44,13 @@ class CreateModal extends Component {
           this.props.closeModal()
         }
       );
+    } else if (this.props.type === types.POST_MORTEM) {
+      Client.createList(this.props.owner.type, this.props.owner.id, {name: this.state.value, listType: "post-mortem"},
+        team => {
+          this.props.addPostMortem(team);
+          this.props.closeModal()
+        }
+      );
     }
   }
 
@@ -52,6 +60,8 @@ class CreateModal extends Component {
       fieldLabel = "Team Name";
     } else if (this.props.type === types.RETRO) {
       fieldLabel = "Retrospective Name";
+    } else if (this.props.type === types.POST_MORTEM) {
+      fieldLabel = "Post-Mortem Name";
     }
     return (
       <div className="modal-container">

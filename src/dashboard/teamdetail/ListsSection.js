@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 
 const types = {
   LIST: 'list',
-  RETRO: 'retrospective'
+  RETRO: 'retrospective',
+  POST_MORTEM: 'post-mortem'
 };
 
 class ListsSection extends Component {
@@ -13,10 +14,13 @@ class ListsSection extends Component {
 
   render() {
     let titleLabel = "Lists";
-    let newListLabel = "LIST"
+    let newListLabel = "LIST";
     if (this.props.type === types.RETRO) {
       titleLabel = "Retrospectives";
-      newListLabel = "RETROSPECTIVE"
+      newListLabel = "RETROSPECTIVE";
+    }else if(this.props.type === types.POST_MORTEM){
+      titleLabel = "Post-Mortems";
+      newListLabel = "POST-MORTEM";
     }
     return (
       <div className="section team-lists">

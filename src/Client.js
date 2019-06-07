@@ -55,6 +55,13 @@ class Client {
     }).then(this.resultAsJson).then(onFulfilled).catch(onRejected);
   }
 
+  static fetchTeamPostMortems(teamId, onFulfilled, onRejected = this.defaultErrorCallback) {
+    fetch(`${this.host}/teams/${teamId}/lists?type=post-mortem`, {
+      method: 'GET',
+      headers: {'Content-Type': 'application/json'}
+    }).then(this.resultAsJson).then(onFulfilled).catch(onRejected);
+  }
+
   static createList(owner, id, list, onFulfilled, onRejected = this.defaultErrorCallback) {
     fetch(`${this.host}/${owner}s/${id}/lists`, {
       method: 'POST',

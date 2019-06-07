@@ -14,26 +14,37 @@ class TeamDetailView extends Component {
     this.state = {
       openCreateListModal: false,
       openCreateRetroModal: false,
+      openCreatePostMortemModal: false,
       members: [],
       lists: [],
       retrospectives: [],
+      postMortems: [],
       selectedList: null
     };
     this.fetchTeamLists = this.fetchTeamLists.bind(this);
+
     this.openCreateListModal = this.openCreateListModal.bind(this);
     this.closeCreateListModal = this.closeCreateListModal.bind(this);
     this.addNewListToTeam = this.addNewListToTeam.bind(this);
+    this.openList = this.openList.bind(this);
+
     this.addNewRetroToTeam = this.addNewRetroToTeam.bind(this);
     this.openCreateRetroModal = this.openCreateRetroModal.bind(this);
     this.closeCreateRetroModal = this.closeCreateRetroModal.bind(this);
-    this.openList = this.openList.bind(this);
     this.openRetrospective = this.openRetrospective.bind(this);
+
+    this.addNewPostMortemToTeam = this.addNewPostMortemToTeam.bind(this);
+    this.openCreatePostMortemModal = this.openCreatePostMortemModal.bind(this);
+    this.closeCreatePostMortemModal = this.closeCreatePostMortemModal.bind(this);
+    this.openPostMortem = this.openPostMortem.bind(this);
+
   }
 
   componentDidMount() {
     this.fetchTeamLists();
     this.fetchMembers();
-    this.fetchTeamRetrospectives()
+    this.fetchTeamRetrospectives();
+    this.fetchTeamPostMortems();
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -41,6 +52,7 @@ class TeamDetailView extends Component {
       this.fetchTeamLists();
       this.fetchMembers();
       this.fetchTeamRetrospectives();
+      this.fetchTeamPostMortems();
     }
   }
 
@@ -54,6 +66,10 @@ class TeamDetailView extends Component {
     this.setState({openCreateListModal: true});
   }
 
+  closeCreateListModal() {
+    this.setState({openCreateListModal: false})
+  }
+
   openCreateRetroModal() {
     this.setState({openCreateRetroModal: true});
   }
@@ -62,8 +78,12 @@ class TeamDetailView extends Component {
     this.setState({openCreateRetroModal: false});
   }
 
-  closeCreateListModal() {
-    this.setState({openCreateListModal: false})
+  openCreatePostMortemModal() {
+    this.setState({openCreatePostMortemModal: true});
+  }
+
+  closeCreatePostMortemModal() {
+    this.setState({openCreatePostMortemModal: false});
   }
 
   addNewListToTeam(list) {
@@ -76,6 +96,11 @@ class TeamDetailView extends Component {
     let retros = this.state.retrospectives;
     retros.push(list);
     this.setState({retrospectives: retros})
+  }
+  addNewPostMortemToTeam(list) {
+    let postMortems = this.state.postMortems;
+    postMortems.push(list);
+    this.setState({postMortems: postMortems})
   }
 
   fetchTeamLists() {
@@ -90,6 +115,12 @@ class TeamDetailView extends Component {
     )
   }
 
+  fetchTeamPostMortems(){
+    Client.fetchTeamPostMortems(this.props.teamId,
+      retros => this.setState({postMortems: retros, selectedList: null})
+    )
+  }
+
   renderModals() {
     if (this.state.openCreateListModal) {
       return <CreateModal closeModal={this.closeCreateListModal} owner={{id: this.props.teamId, type: 'team'}}
@@ -98,6 +129,11 @@ class TeamDetailView extends Component {
     if (this.state.openCreateRetroModal) {
       return <CreateModal closeModal={this.closeCreateRetroModal} owner={{id: this.props.teamId, type: 'team'}}
                           addRetro={this.addNewRetroToTeam} type="retrospective"/>
+    }
+
+    if (this.state.openCreatePostMortemModal) {
+      return <CreateModal closeModal={this.closeCreatePostMortemModal} owner={{id: this.props.teamId, type: 'team'}}
+                          addPostMortem={this.addNewPostMortemToTeam} type="post-mortem"/>
     }
   }
 
@@ -109,6 +145,11 @@ class TeamDetailView extends Component {
   openRetrospective(retroId) {
     let retro = this.state.retrospectives.find(retro => retroId === retro.id);
     this.setState({selectedList: retro})
+  }
+
+  openPostMortem(postMortemId) {
+    let postMortem = this.state.postMortems.find(postMortem => postMortemId === postMortem.id);
+    this.setState({selectedList: postMortem})
   }
 
   render() {
@@ -126,6 +167,9 @@ class TeamDetailView extends Component {
 
           <ListsSection teamId={this.props.teamId} openCreateListModal={this.openCreateRetroModal}
                         lists={this.state.retrospectives} openList={this.openRetrospective} type="retrospective"/>
+
+          <ListsSection teamId={this.props.teamId} openCreateListModal={this.openCreatePostMortemModal}
+                        lists={this.state.postMortems} openList={this.openPostMortem} type="post-mortem"/>
           <div className="section"><div className="leave-team">Leave Team</div></div>
         </div>
         <div className="team-content">{content}</div>
