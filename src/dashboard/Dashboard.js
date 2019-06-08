@@ -6,11 +6,13 @@ import NavBar from "./navbar/NavBar";
 import AllTeamsView from "./allteams/AllTeamsView"
 import TaskList from "./tasklist/TaskList";
 import TeamDetailView from "./teamdetail/TeamDetailView"
+import Client from '../Client';
 
 const pages = {
     ALL_TEAMS: 'all-teams',
     PERSONAL_LIST: 'personal-list',
-    TEAM_DETAIL: "team-detail"
+    TEAM_DETAIL: "team-detail",
+    DASHBOARD: "dashboard"
 };
 
 class Dashboard extends Component {
@@ -38,7 +40,8 @@ class Dashboard extends Component {
         this.toggleTeams = this.toggleTeams.bind(this);
 
         this.openPersonalList = this.openPersonalList.bind(this);
-        this.openTeamDetail = this.openTeamDetail.bind(this)
+        this.openTeamDetail = this.openTeamDetail.bind(this);
+        this.leaveTeam = this.leaveTeam.bind(this);
     }
 
     renderModals() {
@@ -63,7 +66,10 @@ class Dashboard extends Component {
         } else if (this.state.currentPage.page === pages.TEAM_DETAIL) {
           let team = this.state.teams.find(team => team.id === this.state.currentPage.id);
           this.headerText = team.name;
-          return <TeamDetailView teamId={team.id} userId={this.props.user.userId} />
+          return <TeamDetailView teamId={team.id} userId={this.props.user.userId} leaveTeam={this.leaveTeam}/>
+        } else if (this.state.currentPage.page === pages.DASHBOARD) {
+            this.headerText = "DASHBOARD"
+            return <div></div>
         } else {
             return <div></div>
         }
@@ -115,6 +121,13 @@ class Dashboard extends Component {
 
     openTeamDetail(teamId) {
         this.setState({currentPage: {page: pages.TEAM_DETAIL, id: teamId}});
+    }
+
+    leaveTeam(teamId, userId){
+        Client.leaveTeam(teamId, userId);
+        let teams = this.state.teams;
+        let newTeamList = teams.filter(team => team.id !== teamId);
+        this.setState({currentPage: {page: pages.DASHBOARD, id: null}, teams: newTeamList});
     }
 
     render() {

@@ -170,13 +170,12 @@ class TeamDetailView extends Component {
 
           <ListsSection teamId={this.props.teamId} openCreateListModal={this.openCreatePostMortemModal}
                         lists={this.state.postMortems} openList={this.openPostMortem} type="post-mortem"/>
-          <div className="section"><div className="leave-team">Leave Team</div></div>
+          <div className="section"><div className="leave-team" onClick={() => this.props.leaveTeam(this.props.teamId, this.props.userId)}>Leave Team</div></div>
         </div>
         <div className="team-content">{content}</div>
       </div>
     )
   }
-
 }
 
 export default TeamDetailView

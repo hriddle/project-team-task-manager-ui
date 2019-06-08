@@ -92,6 +92,13 @@ class Client {
     }).then(this.resultAsJson).then(onFulfilled).catch(onRejected);
   }
 
+  static leaveTeam(teamId, userId, onFulfilled, onRejected = this.defaultErrorCallback) {
+    return fetch(`${this.host}/teams/${teamId}/${userId}`, {
+      method: 'DELETE',
+      headers: {'Content-Type': 'application/json'}
+    }).then(this.resultAsJson).then(onFulfilled).catch(onRejected);
+  }
+
   static fetchTeamsByUser(userId, onFulfilled, onRejected = this.defaultErrorCallback) {
     fetch(`${this.host}/teams?userId=${userId}`, {
       method: "GET",

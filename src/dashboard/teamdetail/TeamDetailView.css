@@ -19,6 +19,7 @@
   font-size: 14px;
   font-weight: 300;
   color: var(--mint-cream);
+  cursor: pointer;
 }
 
 .lists {
