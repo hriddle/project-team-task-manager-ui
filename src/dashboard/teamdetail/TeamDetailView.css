@@ -56,14 +56,21 @@
   padding-top: 20px;
 }
 
-.section > .section-title {
-  height: 35px;
+.section > .header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  user-select: none;
+  padding: 5px 0;
+  margin-bottom: 5px
+}
+
+.section > .header >.section-title {
   font-family: var(--font);
   font-size: 24px;
   font-weight: bold;
   color: var(--mint-cream);
-  display: flex;
-  margin-bottom: 5px;
+  display: inline-flex;
 }
 
 .section .section-row {

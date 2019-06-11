@@ -9,7 +9,14 @@ const types = {
 class ListsSection extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      open: false
+    };
+    this.toggleCompleted = this.toggleCompleted.bind(this);
+  }
+
+  toggleCompleted() {
+    this.setState({open: !this.state.open})
   }
 
   render() {
@@ -18,23 +25,29 @@ class ListsSection extends Component {
     if (this.props.type === types.RETRO) {
       titleLabel = "Retrospectives";
       newListLabel = "RETROSPECTIVE";
-    }else if(this.props.type === types.POST_MORTEM){
+    } else if (this.props.type === types.POST_MORTEM) {
       titleLabel = "Post-Mortems";
       newListLabel = "POST-MORTEM";
     }
+    const open = this.state.open;
+    const icon = open ? "close" : "add";
     return (
-      <div className="section team-lists">
-        <div className="section-title">{titleLabel}</div>
-        <div className="section-content">
-          {this.props.lists.map(list =>
-            <div className="section-row list-name" key={list.id} onClick={() => this.props.openList(list.id)}>
-              {list.name}
-            </div>
-          )}
-          <div className="section-row new-list" onClick={this.props.openCreateListModal}>NEW {newListLabel}</div>
-        </div>
+
+    <div className="section team-lists">
+      <div className="header">
+      <span className="section-title">{titleLabel}</span>
+        <i className="button material-icons" onClick={this.toggleCompleted}>{icon}</i>
       </div>
-    )
+      <div className="section-content">
+        {open && this.props.lists.map(list =>
+          <div className="section-row list-name" key={list.id} onClick={() => this.props.openList(list.id)}>
+            {list.name}
+          </div>
+        )}
+        <div className="section-row new-list" onClick={this.props.openCreateListModal}>NEW {newListLabel}</div>
+      </div>
+    </div>
+  )
   }
 }
 
