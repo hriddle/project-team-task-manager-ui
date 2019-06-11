@@ -112,6 +112,13 @@ class Client {
       headers: {'Content-Type': 'application/json'}
     }).then(this.resultAsJson).then(onFulfilled).catch(onRejected)
   }
+
+  static fetchAllAssignedTasksByUser(userId, onFulfilled, onRejected = this.defaultErrorCallback) {
+    fetch(`${this.host}/lists/tasks?userId=${userId}`, {
+      method: 'GET',
+      headers: {'Content-Type': 'application/json'}
+    }).then(this.resultAsJson).then(onFulfilled).catch(onRejected)
+  }
 }
 
 export default Client

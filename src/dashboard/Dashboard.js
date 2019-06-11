@@ -7,6 +7,7 @@ import AllTeamsView from "./allteams/AllTeamsView"
 import TaskList from "./tasklist/TaskList";
 import TeamDetailView from "./teamdetail/TeamDetailView"
 import Client from '../Client';
+import AllAssignedTasks from "./tasklist/AllAssignedTasks";
 
 const pages = {
     ALL_TEAMS: 'all-teams',
@@ -69,9 +70,8 @@ class Dashboard extends Component {
           return <TeamDetailView teamId={team.id} userId={this.props.user.userId} leaveTeam={this.leaveTeam}/>
         } else if (this.state.currentPage.page === pages.DASHBOARD) {
             this.headerText = "DASHBOARD"
-            return <div></div>
         } else {
-            return <div></div>
+            return <AllAssignedTasks userId={this.props.user.userId}/>
         }
     }
 

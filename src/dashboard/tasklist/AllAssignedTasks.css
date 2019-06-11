@@ -1,0 +1,73 @@
+.Assigned-tasks {
+  width: 800px;
+  height: 34px;
+  font-family: Montserrat;
+  font-size: 28px;
+  font-weight: 900;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  color: var(--mint-cream);
+}
+
+.no-task-message {
+  width: 800px;
+  height: 64px;
+  font-family: Montserrat;
+  font-size: 22px;
+  font-weight: 300;
+  font-style: italic;
+  font-stretch: normal;
+  line-height: 1.55;
+  letter-spacing: normal;
+  text-align: center;
+  color: var(--maize);
+}
+
+.task-divider {
+  height: 1px;
+  border: solid 1px var(--very-dark-gray);
+}
+
+.tasks {
+  position: relative;
+}
+
+.tasks > .tasks-container {
+  position: relative;
+  width: 800px;
+  margin: 20px auto;
+}
+
+.task-name {
+  width: 746px;
+  height: 30px;
+  font-family: Montserrat;
+  font-size: 22px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  color: var(--mint-cream);
+}
+
+.task-details {
+  width: 800px;
+  height: 24px;
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: 300;
+  font-style: italic;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  color: var(--mint-cream);
+}
+
+.logo-only {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+}
