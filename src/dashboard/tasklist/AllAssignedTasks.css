@@ -52,7 +52,7 @@
   margin: 20px auto;
 }
 
-.task-name {
+#assigned-task-list .task-name {
   height: 22px;
   font-family: Montserrat;
   font-size: 22px;
@@ -62,7 +62,7 @@
   margin-bottom: 8px;
 }
 
-.task-origin {
+#assigned-task-list .task-origin {
   height: 14px;
   font-family: Montserrat;
   font-size: 14px;
@@ -78,7 +78,7 @@
   object-fit: contain;
 }
 
-.due-day {
+#assigned-task-list .task-due-date {
   width: 65px;
   height: 65px;
   font-family: Montserrat;
