@@ -20,7 +20,7 @@ class Dashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentPage: {page: '', id: ''},
+            currentPage: {page: pages.DASHBOARD, id: ''},
             openCreatePersonalListModal: false,
             openCreateTeamModal: false,
             personalLists: [],
@@ -43,6 +43,7 @@ class Dashboard extends Component {
         this.openPersonalList = this.openPersonalList.bind(this);
         this.openTeamDetail = this.openTeamDetail.bind(this);
         this.leaveTeam = this.leaveTeam.bind(this);
+        this.goToDashboard = this.goToDashboard.bind(this);
     }
 
     renderModals() {
@@ -70,9 +71,14 @@ class Dashboard extends Component {
           return <TeamDetailView teamId={team.id} userId={this.props.user.userId} leaveTeam={this.leaveTeam}/>
         } else if (this.state.currentPage.page === pages.DASHBOARD) {
             this.headerText = "DASHBOARD"
-        } else {
             return <AllAssignedTasks userId={this.props.user.userId}/>
+        } else {
         }
+    }
+
+    goToDashboard(){
+        this.setState({currentPage: {page: pages.DASHBOARD, id: null}});
+
     }
 
     openCreatePersonalListModal() {
@@ -147,7 +153,7 @@ class Dashboard extends Component {
                         </div>
                     </div>
                     <div className="logo-container">
-                        <img src={logo} alt="Team Tasks logo" className="logo-img"/>
+                        <img src={logo} alt="Team Tasks logo" className="logo-img" onClick={() => this.goToDashboard()}/>
                     </div>
                 </div>
                 <NavBar openCreateListModal={this.openCreatePersonalListModal}

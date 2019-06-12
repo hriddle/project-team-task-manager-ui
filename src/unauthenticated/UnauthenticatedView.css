@@ -47,6 +47,7 @@ input:focus {
 .logo-container img.logo-img {
   height: 96px;
   width: 224px;
+  cursor: pointer;
 }
 
 .sidebox > .welcome {
