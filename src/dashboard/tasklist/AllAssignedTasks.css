@@ -19,19 +19,31 @@
   font-weight: 300;
   font-style: italic;
   font-stretch: normal;
-  line-height: 1.55;
+  line-height: 64px;
   letter-spacing: normal;
   text-align: center;
   color: var(--maize);
+  margin-top: 60px;
 }
 
 .task-divider {
-  height: 1px;
-  border: solid 1px var(--very-dark-gray);
+  height: 10px;
+  border-bottom: solid 1px var(--very-dark-gray);
 }
 
-.tasks {
-  position: relative;
+#assigned-task-list .task {
+  height: 64px;
+  border-bottom: solid 1px var(--very-dark-gray);
+  display: flex;
+  align-items: center;
+}
+
+#assigned-task-list .task .task-info {
+  flex-grow: 1;
+}
+
+#assigned-task-list .task .task-due-date {
+  flex-grow: 0
 }
 
 .tasks > .tasks-container {
@@ -41,28 +53,22 @@
 }
 
 .task-name {
-  width: 746px;
-  height: 30px;
+  height: 22px;
   font-family: Montserrat;
   font-size: 22px;
   font-weight: 300;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1;
-  letter-spacing: normal;
+  line-height: 22px;
   color: var(--mint-cream);
+  margin-bottom: 8px;
 }
 
-.task-details {
-  width: 800px;
-  height: 24px;
+.task-origin {
+  height: 14px;
   font-family: Montserrat;
   font-size: 14px;
   font-weight: 300;
   font-style: italic;
-  font-stretch: normal;
-  line-height: 1;
-  letter-spacing: normal;
+  line-height: 14px;
   color: var(--mint-cream);
 }
 
@@ -78,11 +84,7 @@
   font-family: Montserrat;
   font-size: 18px;
   font-weight: 300;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 2.11;
-  letter-spacing: normal;
+  line-height: 65px;
   text-align: right;
   color: var(--mint-cream);
-  display: inline-flex;
 }
