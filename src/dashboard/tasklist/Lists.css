@@ -324,7 +324,7 @@ li.task > .indicators {
   transition: transform 50ms;
 }
 
-.completed-tasks i.open {
+i.open {
   transform: rotate(45deg);
 }
 

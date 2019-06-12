@@ -30,24 +30,27 @@ class ListsSection extends Component {
       newListLabel = "POST-MORTEM";
     }
     const open = this.state.open;
-    const icon = open ? "close" : "add";
+    const addIconClass = "button material-icons" + (open ? " open" : "");
+
     return (
 
-    <div className="section team-lists">
-      <div className="header">
-      <span className="section-title">{titleLabel}</span>
-        <i className="button material-icons" onClick={this.toggleCompleted}>{icon}</i>
-      </div>
-      <div className="section-content">
-        {open && this.props.lists.map(list =>
-          <div className="section-row list-name" key={list.id} onClick={() => this.props.openList(list.id)}>
-            {list.name}
+      <div className="section team-lists">
+        <div className="header">
+          <span className="section-title">{titleLabel}</span>
+          <i className={addIconClass} onClick={this.toggleCompleted}>add</i>
+        </div>
+        {open ?
+          <div className="section-content">
+            {this.props.lists.map(list =>
+            <div className="section-row list-name" key={list.id} onClick={() => this.props.openList(list.id)}>
+              {list.name}
+            </div>
+            )}
+            <div className="section-row new-list" onClick={this.props.openCreateListModal}>NEW {newListLabel}</div>
           </div>
-        )}
-        <div className="section-row new-list" onClick={this.props.openCreateListModal}>NEW {newListLabel}</div>
+          : <div></div>}
       </div>
-    </div>
-  )
+    )
   }
 }
 
